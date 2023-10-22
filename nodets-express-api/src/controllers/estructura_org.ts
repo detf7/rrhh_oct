@@ -123,10 +123,10 @@ type objType = {
 
 
  const querySpec = {
-	text: 'SELECT * FROM public.escala'
+	text: 'SELECT * FROM public.unidad'
 }
 
-let sqltext = `SELECT * FROM public.escala`;
+let sqltext = `SELECT * FROM public.unidad`;
 let result = await rawQuery(sqltext);
 
 /*
@@ -150,9 +150,9 @@ const deliveries = [];
 for (let i = 0; i < result.length; i++) {
     const item = result[i];
     console.log(`Resultado ${i + 1}:`);
-    console.log(`ID de Escala: ${item.idescala}`);
-    console.log(`Entidad: ${item.entidad}`);
-    console.log(`Categoría: ${item.categoria}`);
+    console.log(`ID de Escala: ${item.idunidad}`);
+    console.log(`Soa: ${item.soa}`);
+    console.log(`desc: ${item.descripcion}`);
 
 }
  return res.send(result);
