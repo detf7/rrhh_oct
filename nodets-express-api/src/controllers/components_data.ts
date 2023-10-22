@@ -125,54 +125,6 @@ router.get('/iddeclaracion_option_list', async (req:HttpRequest, res:HttpRespons
 
 
  /**
- * Route to get codmaterial_option_list records
- * @route {GET} /components_data/codmaterial_option_list
- */
-router.get('/codmaterial_option_list', async (req:HttpRequest, res:HttpResponse) => {
-	try{
-		let sqltext = `SELECT idmaterial as value, idmaterial as label FROM material` ;
-		let records = await rawQuery(sqltext );
-		return res.send(records);
-	}
-	catch(err){
-		return res.serverError(err);
-	}
-});
-
-
- /**
- * Route to get codcompra_option_list records
- * @route {GET} /components_data/codcompra_option_list
- */
-router.get('/codcompra_option_list', async (req:HttpRequest, res:HttpResponse) => {
-	try{
-		let sqltext = `SELECT idcompra as value, idcompra as label FROM compra` ;
-		let records = await rawQuery(sqltext );
-		return res.send(records);
-	}
-	catch(err){
-		return res.serverError(err);
-	}
-});
-
-
- /**
- * Route to get codpedido_option_list records
- * @route {GET} /components_data/codpedido_option_list
- */
-router.get('/codpedido_option_list', async (req:HttpRequest, res:HttpResponse) => {
-	try{
-		let sqltext = `SELECT idpedido as value, idpedido as label FROM pedido` ;
-		let records = await rawQuery(sqltext );
-		return res.send(records);
-	}
-	catch(err){
-		return res.serverError(err);
-	}
-});
-
-
- /**
  * Route to get coditem_option_list records
  * @route {GET} /components_data/coditem_option_list
  */
@@ -227,38 +179,6 @@ router.get('/codunidad_option_list', async (req:HttpRequest, res:HttpResponse) =
 router.get('/codgestion_option_list', async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		let sqltext = `SELECT idgestion as value, idgestion as label FROM gestion` ;
-		let records = await rawQuery(sqltext );
-		return res.send(records);
-	}
-	catch(err){
-		return res.serverError(err);
-	}
-});
-
-
- /**
- * Route to get codregvacacion_option_list records
- * @route {GET} /components_data/codregvacacion_option_list
- */
-router.get('/codregvacacion_option_list', async (req:HttpRequest, res:HttpResponse) => {
-	try{
-		let sqltext = `SELECT idregvacacion as value, idregvacacion as label FROM regvacacion` ;
-		let records = await rawQuery(sqltext );
-		return res.send(records);
-	}
-	catch(err){
-		return res.serverError(err);
-	}
-});
-
-
- /**
- * Route to get codvacacion_option_list records
- * @route {GET} /components_data/codvacacion_option_list
- */
-router.get('/codvacacion_option_list', async (req:HttpRequest, res:HttpResponse) => {
-	try{
-		let sqltext = `SELECT idvacacion as value, idvacacion as label FROM vacaciones` ;
 		let records = await rawQuery(sqltext );
 		return res.send(records);
 	}
@@ -536,6 +456,22 @@ router.get('/codpla_option_list', async (req:HttpRequest, res:HttpResponse) => {
 router.get('/codalmacen_option_list', async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		let sqltext = `SELECT idalmacen as value, idalmacen as label FROM almacen` ;
+		let records = await rawQuery(sqltext );
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get codmaterial_option_list records
+ * @route {GET} /components_data/codmaterial_option_list
+ */
+router.get('/codmaterial_option_list', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT idmaterial as value, idmaterial as label FROM material` ;
 		let records = await rawQuery(sqltext );
 		return res.send(records);
 	}

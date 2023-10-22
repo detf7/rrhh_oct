@@ -26,12 +26,9 @@ import DeclaracionPreguntaUsuarioController from './controllers/declaracion_preg
 import DeclaracionesController from './controllers/declaraciones';
 import DenominacionController from './controllers/denominacion';
 import DenominacionEoController from './controllers/denominacion_eo';
-import DetallecompraController from './controllers/detallecompra';
-import DetallepedidoController from './controllers/detallepedido';
 import DetboletaController from './controllers/detboleta';
 import DetescalaController from './controllers/detescala';
 import DetitemController from './controllers/detitem';
-import DetvacacionController from './controllers/detvacacion';
 import EntidadController from './controllers/entidad';
 import EoMaestraController from './controllers/eo_maestra';
 import EscalaController from './controllers/escala';
@@ -142,12 +139,9 @@ app.use('/api/declaracion_pregunta_usuario', DeclaracionPreguntaUsuarioControlle
 app.use('/api/declaraciones', DeclaracionesController)
 app.use('/api/denominacion', DenominacionController)
 app.use('/api/denominacion_eo', DenominacionEoController)
-app.use('/api/detallecompra', DetallecompraController)
-app.use('/api/detallepedido', DetallepedidoController)
 app.use('/api/detboleta', DetboletaController)
 app.use('/api/detescala', DetescalaController)
 app.use('/api/detitem', DetitemController)
-app.use('/api/detvacacion', DetvacacionController)
 app.use('/api/entidad', EntidadController)
 app.use('/api/eo_maestra', EoMaestraController)
 app.use('/api/escala', EscalaController)

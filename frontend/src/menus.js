@@ -460,24 +460,72 @@ export const AppMenus = {
         "iconcolor": "",
         "target": "",
         "submenu": []
+      },
+      {
+        "path": "/permanente",
+        "label": "Permanente",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/v_npermanente",
+        "label": "V Npermanente",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/nivel_eo",
+        "label": "Nivel Eo",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/rm_eo",
+        "label": "Rm Eo",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/eo_maestra",
+        "label": "Eo Maestra",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/v_escalaimpr",
+        "label": "V Escalaimpr",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/cod_soa",
+        "label": "Cod Soa",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/denominacion/vistainte",
+        "label": "Vistainte",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
       }
     ]
-  },
-  {
-    "path": "/permanente",
-    "label": "Permanente",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/v_npermanente",
-    "label": "V Npermanente",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
   },
   {
     "path": "/fuente",
@@ -498,14 +546,6 @@ export const AppMenus = {
   {
     "path": "/denominacion/vista",
     "label": "Vista",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/denominacion/vistainte",
-    "label": "Vistainte",
     "icon": "extension",
     "iconcolor": "",
     "target": "",
@@ -536,56 +576,8 @@ export const AppMenus = {
     "submenu": []
   },
   {
-    "path": "/v_escalaimpr",
-    "label": "V Escalaimpr",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
     "path": "/escala_t",
     "label": "Escala T",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/nivel_eo",
-    "label": "Nivel Eo",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/cod_soa",
-    "label": "Cod Soa",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/denominacion_eo",
-    "label": "Denominacion Eo",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/eo_maestra",
-    "label": "Eo Maestra",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/rm_eo",
-    "label": "Rm Eo",
     "icon": "extension",
     "iconcolor": "",
     "target": "",
@@ -1564,87 +1556,6 @@ export const AppMenus = {
     "field": "cod_gestion"
   }
 ],
-	DetallecompraListHeaderItems: [
-  {
-    "label": "Iddetcompra",
-    "align": "left",
-    "sortable": false,
-    "name": "iddetcompra",
-    "field": "iddetcompra"
-  },
-  {
-    "label": "Cantidad",
-    "align": "left",
-    "sortable": false,
-    "name": "cantidad",
-    "field": "cantidad"
-  },
-  {
-    "label": "Preciouni",
-    "align": "left",
-    "sortable": false,
-    "name": "preciouni",
-    "field": "preciouni"
-  },
-  {
-    "label": "Codmaterial",
-    "align": "left",
-    "sortable": false,
-    "name": "codmaterial",
-    "field": "codmaterial"
-  },
-  {
-    "label": "Codcompra",
-    "align": "left",
-    "sortable": false,
-    "name": "codcompra",
-    "field": "codcompra"
-  },
-  {
-    "label": "",
-    "align": "right",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  }
-],
-	DetallepedidoListHeaderItems: [
-  {
-    "label": "Iddetpedido",
-    "align": "left",
-    "sortable": false,
-    "name": "iddetpedido",
-    "field": "iddetpedido"
-  },
-  {
-    "label": "Cantidad",
-    "align": "left",
-    "sortable": false,
-    "name": "cantidad",
-    "field": "cantidad"
-  },
-  {
-    "label": "Codmaterial",
-    "align": "left",
-    "sortable": false,
-    "name": "codmaterial",
-    "field": "codmaterial"
-  },
-  {
-    "label": "Codpedido",
-    "align": "left",
-    "sortable": false,
-    "name": "codpedido",
-    "field": "codpedido"
-  },
-  {
-    "label": "",
-    "align": "right",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  }
-],
 	DetboletaListHeaderItems: [
   {
     "label": "",
@@ -1838,85 +1749,6 @@ export const AppMenus = {
     "sortable": false,
     "name": "jefinmjer",
     "field": "jefinmjer"
-  },
-  {
-    "label": "",
-    "align": "right",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  }
-],
-	DetvacacionListHeaderItems: [
-  {
-    "label": "Iddetvac",
-    "align": "left",
-    "sortable": false,
-    "name": "iddetvac",
-    "field": "iddetvac"
-  },
-  {
-    "label": "Cantidad",
-    "align": "left",
-    "sortable": false,
-    "name": "cantidad",
-    "field": "cantidad"
-  },
-  {
-    "label": "Codregvacacion",
-    "align": "left",
-    "sortable": false,
-    "name": "codregvacacion",
-    "field": "codregvacacion"
-  },
-  {
-    "label": "Fecha Creacion",
-    "align": "left",
-    "sortable": false,
-    "name": "fecha_creacion",
-    "field": "fecha_creacion"
-  },
-  {
-    "label": "Fecha Modificacion",
-    "align": "left",
-    "sortable": false,
-    "name": "fecha_modificacion",
-    "field": "fecha_modificacion"
-  },
-  {
-    "label": "Fecha Eliminacion",
-    "align": "left",
-    "sortable": false,
-    "name": "fecha_eliminacion",
-    "field": "fecha_eliminacion"
-  },
-  {
-    "label": "Usuario Eliminacion",
-    "align": "left",
-    "sortable": false,
-    "name": "usuario_eliminacion",
-    "field": "usuario_eliminacion"
-  },
-  {
-    "label": "Codvacacion",
-    "align": "left",
-    "sortable": false,
-    "name": "codvacacion",
-    "field": "codvacacion"
-  },
-  {
-    "label": "Usuario Creacion",
-    "align": "left",
-    "sortable": false,
-    "name": "usuario_creacion",
-    "field": "usuario_creacion"
-  },
-  {
-    "label": "Usuario Modificacion",
-    "align": "left",
-    "sortable": false,
-    "name": "usuario_modificacion",
-    "field": "usuario_modificacion"
   },
   {
     "label": "",
@@ -2133,6 +1965,13 @@ export const AppMenus = {
     "sortable": false,
     "name": "costo_mensual",
     "field": "costo_mensual"
+  },
+  {
+    "label": "Gestión",
+    "align": "left",
+    "sortable": true,
+    "name": "codgestion",
+    "field": "codgestion"
   }
 ],
 	habilitadoItems: [    
@@ -4672,13 +4511,6 @@ export const AppMenus = {
 ],
 	RegvacacionListHeaderItems: [
   {
-    "label": "",
-    "align": "left",
-    "sortable": false,
-    "name": "masterdetailbtn",
-    "field": ""
-  },
-  {
     "label": "Idregvacacion",
     "align": "left",
     "sortable": false,
@@ -5449,13 +5281,6 @@ export const AppMenus = {
   }
 ],
 	VacacionesListHeaderItems: [
-  {
-    "label": "",
-    "align": "left",
-    "sortable": false,
-    "name": "masterdetailbtn",
-    "field": ""
-  },
   {
     "label": "Fecha Eliminacion",
     "align": "left",

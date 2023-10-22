@@ -16,12 +16,9 @@ import Declaracion_Pregunta_Usuario from './models/declaracion_pregunta_usuario.
 import Declaraciones from './models/declaraciones.entity';
 import Denominacion from './models/denominacion.entity';
 import Denominacion_Eo from './models/denominacion_eo.entity';
-import Detallecompra from './models/detallecompra.entity';
-import Detallepedido from './models/detallepedido.entity';
 import Detboleta from './models/detboleta.entity';
 import Detescala from './models/detescala.entity';
 import Detitem from './models/detitem.entity';
-import Detvacacion from './models/detvacacion.entity';
 import Entidad from './models/entidad.entity';
 import Eo_Maestra from './models/eo_maestra.entity';
 import Escala from './models/escala.entity';
@@ -100,12 +97,9 @@ const DB = {
 	Declaraciones,
 	Denominacion,
 	Denominacion_Eo,
-	Detallecompra,
-	Detallepedido,
 	Detboleta,
 	Detescala,
 	Detitem,
-	Detvacacion,
 	Entidad,
 	Eo_Maestra,
 	Escala,

@@ -130,18 +130,8 @@ let routes = [{
 		{ path: '/denominacion_eo/edit/:id', name: 'denominacion_eoedit', component: () => import('pages/denominacion_eo/edit.vue'), props: true },
 
 //detallecompra routes
-		{ path: '/detallecompra', name: 'detallecompralist', component: () => import('pages/detallecompra/list.vue'), props: true },
-		{ path: '/detallecompra/index/:fieldName?/:fieldValue?', component: () => import('pages/detallecompra/list.vue'), props: true },
-		{ path: '/detallecompra/view/:id', name: 'detallecompraview', component: () => import('pages/detallecompra/view.vue'), props: true },
-		{ path: '/detallecompra/add', name: 'detallecompraadd', component: () => import('pages/detallecompra/add.vue'), props: true },
-		{ path: '/detallecompra/edit/:id', name: 'detallecompraedit', component: () => import('pages/detallecompra/edit.vue'), props: true },
 
 //detallepedido routes
-		{ path: '/detallepedido', name: 'detallepedidolist', component: () => import('pages/detallepedido/list.vue'), props: true },
-		{ path: '/detallepedido/index/:fieldName?/:fieldValue?', component: () => import('pages/detallepedido/list.vue'), props: true },
-		{ path: '/detallepedido/view/:id', name: 'detallepedidoview', component: () => import('pages/detallepedido/view.vue'), props: true },
-		{ path: '/detallepedido/add', name: 'detallepedidoadd', component: () => import('pages/detallepedido/add.vue'), props: true },
-		{ path: '/detallepedido/edit/:id', name: 'detallepedidoedit', component: () => import('pages/detallepedido/edit.vue'), props: true },
 
 //detboleta routes
 		{ path: '/detboleta', name: 'detboletalist', component: () => import('pages/detboleta/list.vue'), props: true },
@@ -165,11 +155,6 @@ let routes = [{
 		{ path: '/detitem/edit/:id', name: 'detitemedit', component: () => import('pages/detitem/edit.vue'), props: true },
 
 //detvacacion routes
-		{ path: '/detvacacion', name: 'detvacacionlist', component: () => import('pages/detvacacion/list.vue'), props: true },
-		{ path: '/detvacacion/index/:fieldName?/:fieldValue?', component: () => import('pages/detvacacion/list.vue'), props: true },
-		{ path: '/detvacacion/view/:id', name: 'detvacacionview', component: () => import('pages/detvacacion/view.vue'), props: true },
-		{ path: '/detvacacion/add', name: 'detvacacionadd', component: () => import('pages/detvacacion/add.vue'), props: true },
-		{ path: '/detvacacion/edit/:id', name: 'detvacacionedit', component: () => import('pages/detvacacion/edit.vue'), props: true },
 
 //entidad routes
 		{ path: '/entidad', name: 'entidadlist', component: () => import('pages/entidad/list.vue'), props: true },
