@@ -333,7 +333,7 @@
 	
 	const pageTitle = computed({
 		get: function () {
-			return "Estructura Org"
+			return "Estructura Organizacional"
 		}
 	});
 	
