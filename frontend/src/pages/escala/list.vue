@@ -154,6 +154,11 @@
                                                 <q-td  key="costo_mensual" :props="props">
                                                     {{ props.row.costo_mensual }}
                                                 </q-td>
+                                                <q-td  key="codgestion" :props="props">
+                                                    <q-btn v-if="props.row.codgestion" @click="app.openPageDialog({ page: 'gestion/view', url: `/gestion/view/${props.row.codgestion}` , closeBtn: true })" padding="xs" flat color="primary" no-caps >
+                                                        <q-icon name="visibility" size="xs"  class="q-mr-xs"></q-icon>  Gestion
+                                                    </q-btn>
+                                                </q-td>
                                             </q-tr>
                                         </template>
                                         <!-- End of Table Layout-->
