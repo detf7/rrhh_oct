@@ -82,7 +82,8 @@ export default class Escala extends BaseModel {
 			"denominacion", 
 			"haberbasico", 
 			"numero_items", 
-			"costo_mensual"
+			"costo_mensual", 
+			"codgestion"
 		];
 	}
 
@@ -97,7 +98,8 @@ export default class Escala extends BaseModel {
 			"denominacion", 
 			"haberbasico", 
 			"numero_items", 
-			"costo_mensual"
+			"costo_mensual", 
+			"codgestion"
 		];
 	}
 
