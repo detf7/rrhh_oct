@@ -1,0 +1,281 @@
+<template>
+    <main class="main-page" id="">
+        <template v-if="pageReady">
+            <template v-if="showHeader">
+                <section class="page-section q-pa-md" >
+                    <div class="container">
+                        <div class="row items-center q-col-gutter-md">
+                            <div  v-if="!isSubPage"  class="col-auto " >
+                                <q-btn @click="$router.go(-1)"      flat :rounded="false"  size=""  color="primary"  no-caps  unelevated   class="" >
+                                    <q-icon name="arrow_back"></q-icon>                             
+                                </q-btn>
+                            </div>
+                            <div  class="col col-md-auto " >
+                                <div class=" text-h6 text-primary" >
+                                    Ver
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </template>
+            <section class="page-section " >
+                <div class="container">
+                    <div class="row q-col-gutter-x-md">
+                        <div  class="col comp-grid" >
+                            <div >
+                                <div class="q-mb-3 row q-col-gutter-md justify-start">
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Idtmpsal</div>
+                                                    <div class="text-bold">{{ item.idtmpsal }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Precio</div>
+                                                    <div class="text-bold">{{ item.precio }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Inicial</div>
+                                                    <div class="text-bold">{{ item.inicial }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Tinicial</div>
+                                                    <div class="text-bold">{{ item.tinicial }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Compras</div>
+                                                    <div class="text-bold">{{ item.compras }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Tcompras</div>
+                                                    <div class="text-bold">{{ item.tcompras }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Pedidos</div>
+                                                    <div class="text-bold">{{ item.pedidos }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Tpedidos</div>
+                                                    <div class="text-bold">{{ item.tpedidos }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Final</div>
+                                                    <div class="text-bold">{{ item.final }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Tfinal</div>
+                                                    <div class="text-bold">{{ item.tfinal }}</div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Codalmacen</div>
+                                                    <div class="text-bold">
+                                                        <q-btn v-if="item.codalmacen" @click="app.openPageDialog({ page: 'almacen/view', url: `/almacen/view/${item.codalmacen}` , closeBtn: true })" padding="xs" flat color="primary" no-caps >
+                                                            <q-icon name="visibility" size="xs"  class="q-mr-xs"></q-icon>  Almacen Detail
+                                                        </q-btn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Codmaterial</div>
+                                                    <div class="text-bold">
+                                                        <q-btn v-if="item.codmaterial" @click="app.openPageDialog({ page: 'material/view', url: `/material/view/${item.codmaterial}` , closeBtn: true })" padding="xs" flat color="primary" no-caps >
+                                                            <q-icon name="visibility" size="xs"  class="q-mr-xs"></q-icon>  Material Detail
+                                                        </q-btn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <q-card  class="q-pa-md nice-shadow-16">
+                                            <div class="row q-col-gutter-x-md items-center">
+                                                <div class="col">
+                                                    <div class="text-grey text-weight-medium mb-1">Codgestion</div>
+                                                    <div class="text-bold">
+                                                        <q-btn v-if="item.codgestion" @click="app.openPageDialog({ page: 'gestion/view', url: `/gestion/view/${item.codgestion}` , closeBtn: true })" padding="xs" flat color="primary" no-caps >
+                                                            <q-icon name="visibility" size="xs"  class="q-mr-xs"></q-icon>  Gestion Detail
+                                                        </q-btn>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </q-card>
+                                    </div>
+                                </div>
+                                <div class="row q-col-gutter-xs justify-start q-ma-md">
+                                    <div><q-btn icon="edit" label="Edit" glossy  flat :rounded="false"  no-caps  unelevated   padding="xs" color="positive" title="Editar"  @click="app.openPageDialog({ page:'tmpsaldos/edit', url: `/tmpsaldos/edit/${item.idtmpsal}` , closeBtn: true })">
+                                    </q-btn></div>
+                                    <div><q-btn icon="delete_sweep" label="Delete" glossy  flat :rounded="false"  no-caps  unelevated   padding="xs" color="negative" title="Borrar"  @click="deleteItem(item.idtmpsal)">
+                                    </q-btn></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <template v-if="loading">
+            <div style="min-height:200px" class="q-pa-sm text-center relative-position">
+                <q-inner-loading color="primary" label="Cargando..." showing></q-inner-loading>
+            </div>
+        </template>
+    </main>
+</template>
+<script setup>
+	import {  computed, ref, toRefs, onMounted } from 'vue';
+	import { useMeta } from 'quasar';
+	import { useApp } from 'src/composables/app.js';
+	import { useViewPage } from 'src/composables/viewpage.js';
+	import { usePageStore } from 'src/stores/page';
+	
+	const props = defineProps({
+		id: [String, Number],
+		primaryKey: {
+			type: String,
+			default: 'idtmpsal',
+		},
+		pageName: {
+			type: String,
+			default: 'tmpsaldos',
+		},
+		routeName: {
+			type: String,
+			default: 'tmpsaldosview',
+		},
+		apiPath: {
+			type: String,
+			default: 'tmpsaldos/view',
+		},
+		editButton: {
+			type: Boolean,
+			default: true,
+		},
+		deleteButton: {
+			type: Boolean,
+			default: true,
+		},
+		exportButton: {
+			type: Boolean,
+			default: true,
+		},
+		scrollIntoView: {
+			type: Boolean,
+			default: true,
+		},
+		isSubPage: {
+			type : Boolean,
+			default : false,
+		},
+		titleBeforeDelete: {
+			type: String,
+			default: "Eliminar el registro",
+		},
+		msgBeforeDelete: {
+			type: String,
+			default: "¿Seguro que quieres borrar este registro?",
+		},
+		msgAfterDelete: {
+			type: String,
+			default: "Grabar eliminado con éxito",
+		},
+		showHeader: {
+			type: Boolean,
+			default: true,
+		},
+		showFooter: {
+			type: Boolean,
+			default: true,
+		},
+	});
+	
+	const store = usePageStore(props.pageName);
+	const app = useApp(props);
+	
+	const page = useViewPage({store, props}); // where page logics resides
+	
+	const {  currentRecord } = toRefs(store.state);
+	const { loading, pageReady } = toRefs(page.state);
+	const item = currentRecord;
+	
+	const  { load, deleteItem,    } = page.methods;
+	
+	
+	useMeta(() => {
+		return {
+			//set browser title
+			title: "Ver"
+		}
+	});
+	
+	onMounted(()=>{ 
+		load();
+	});
+</script>
+<style scoped>
+</style>

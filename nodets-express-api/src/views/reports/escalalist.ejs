@@ -1,0 +1,46 @@
+
+<div id="report-title"><h1>Reporte de Escala</h1></div>
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Fuente</th>
+            <th>Categoria</th>
+            <th>Nivel</th>
+            <th>Denominacion</th>
+            <th>Haber Básico</th>
+            <th>Perfil Académico</th>
+            <th>Aespecifica</th>
+            <th>Mespecifica</th>
+            <th>Ageneral</th>
+            <th>Mgeneral</th>
+            <th>Habilitado</th>
+            <th>Gestión</th>
+            <th>Normativa Codigo</th>
+            <th>Normativa Anyo</th>
+            <th>Numero Items</th>
+            <th>Costo Mensual</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(record){ %>
+        <tr>
+            <td><%= record.financiero %></td>
+            <td><%= record.categoria %></td>
+            <td><%= record.nivel %></td>
+            <td><%= record.denominacion %></td>
+            <td><%= record.haberbasico %></td>
+            <td><%= record.academico %></td>
+            <td><%= record.aespecifica %></td>
+            <td><%= record.mespecifica %></td>
+            <td><%= record.ageneral %></td>
+            <td><%= record.mgeneral %></td>
+            <td><%= record.habilitado %></td>
+            <td><%= record.codgestion %></td>
+            <td><%= record.normativa_codigo %></td>
+            <td><%= record.normativa_anyo %></td>
+            <td><%= record.numero_items %></td>
+            <td><%= record.costo_mensual %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

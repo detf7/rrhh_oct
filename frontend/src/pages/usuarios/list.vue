@@ -1,0 +1,367 @@
+<template>
+    <main class="main-page" id="">
+        <template v-if="showHeader">
+            <section class="page-section q-pa-md" >
+                <div class="container-fluid">
+                    <div class="row justify-between items-center q-col-gutter-md">
+                        <div  class="col col-md-auto " >
+                            <div class=" text-h6 text-primary" >
+                                Usuarios
+                            </div>
+                        </div>
+                        <div  class="col-md-auto col-12 " >
+                            <q-btn       :rounded="false"  size=""  color="primary" no-caps  unelevated   :to="`/usuarios/add`" class="" >
+                                <q-icon name="add"></q-icon>                                
+                                Agregar nuevo 
+                            </q-btn>
+                        </div>
+                        <div  class="col-md-auto col-12 " >
+                            <q-input debounce="1000"  placeholder="Buscar" v-model="searchText" >
+                            <template v-slot:append>
+                                <q-icon name="search"></q-icon>
+                            </template>
+                            </q-input>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <section class="page-section " >
+            <div class="container-fluid">
+                <div class="row q-col-gutter-x-md">
+                    <div  class="col comp-grid" >
+                        <div class="row q-mb-md q-gutter-sm">
+                            <div class="q-px-sm nice-shadow-16" v-if="searchText">
+                                Buscar: 
+                                <q-chip icon="search" removable @remove="clearSearch()" :label="searchText">
+                                </q-chip>
+                            </div>
+                        </div>
+                        <div >
+                            <template v-if="showBreadcrumbs && $route.query.tag">
+                                <q-breadcrumbs class="q-pa-md">
+                                    <q-breadcrumbs-el icon="arrow_back" class="text-capitalize" :label="$route.query.tag" to="/usuarios"></q-breadcrumbs-el>
+                                    <q-breadcrumbs-el :label="$route.query.label"></q-breadcrumbs-el>
+                                </q-breadcrumbs>
+                            </template>
+                            <div class="row q-col-gutter-x-md q-col-gutter-md justify-start">
+                                <div class="col">
+                                    <!-- page records template -->
+                                    <div >
+                                        <q-table 
+                                        :flat="true"
+                                        table-header-class="text-h4 bg-grey-2"
+                                        :bordered="false"
+                                        :columns="app.menus.UsuariosListHeaderItems" 
+                                        :rows="records"
+                                        :binary-state-sort="true"
+                                        separator="horizontal"
+                                        :dense="true"
+                                        v-model:selected="selectedItems"
+                                        selection="multiple"
+                                        row-key="idcarnet" 
+                                        v-model:pagination="pagination"
+                                        hide-bottom
+                                        @request="setPagination"
+                                        :loading="loading">
+                                        <!-- Start of Table Layout -->
+                                        <template v-slot:body="props">
+                                            <q-tr :class="{selected: isCurrentRecord(props.row)}" :props="props">
+                                                <q-td auto-width>
+                                                    <q-checkbox dense v-model="props.selected"></q-checkbox>
+                                                </q-td>
+                                                <q-td auto-width key="masterdetailbtn" :props="props">
+                                                    <q-btn @click="setCurrentRecord(props.row)" flat padding="xs" color="primary" no-caps  icon="more_vert">
+                                                    </q-btn>
+                                                </q-td>
+                                                <q-td  key="user_role_id" :props="props">
+                                                    <q-btn v-if="props.row.user_role_id" @click="app.openPageDialog({ page: 'roles/view', url: `/roles/view/${props.row.user_role_id}` , closeBtn: true })" padding="xs" flat color="primary" no-caps >
+                                                        <q-icon name="visibility" size="xs"  class="q-mr-xs"></q-icon>  Roles
+                                                    </q-btn>
+                                                </q-td>
+                                                <q-td  key="permisos" :props="props">
+                                                    {{ props.row.permisos }}
+                                                </q-td>
+                                                <q-td  key="editar" :props="props">
+                                                    {{ props.row.editar }}
+                                                </q-td>
+                                                <q-td  key="jsonunidad" :props="props">
+                                                    {{ props.row.jsonunidad }}
+                                                </q-td>
+                                                <q-td  key="apmaterno" :props="props">
+                                                    {{ props.row.apmaterno }}
+                                                </q-td>
+                                                <q-td  key="usuario" :props="props">
+                                                    {{ props.row.usuario }}
+                                                </q-td>
+                                                <q-td  key="clave" :props="props">
+                                                    {{ props.row.clave }}
+                                                </q-td>
+                                                <q-td  key="foto" :props="props">
+                                                    {{ props.row.foto }}
+                                                </q-td>
+                                                <q-td  key="theme" :props="props">
+                                                    {{ props.row.theme }}
+                                                </q-td>
+                                                <q-td  key="estado" :props="props">
+                                                    {{ props.row.estado }}
+                                                </q-td>
+                                                <q-td  key="account_status" :props="props">
+                                                    {{ props.row.account_status }}
+                                                </q-td>
+                                                <q-td  key="idcarnet" :props="props">
+                                                    <q-btn padding="xs"   :rounded="false"  color="primary"  no-caps  unelevated   flat :to="`/usuarios/view/${props.row.idcarnet}`">{{ props.row.idcarnet }}</q-btn>
+                                                </q-td>
+                                                <q-td  key="expedido" :props="props">
+                                                    {{ props.row.expedido }}
+                                                </q-td>
+                                                <q-td  key="nombres" :props="props">
+                                                    {{ props.row.nombres }}
+                                                </q-td>
+                                                <q-td  key="appaterno" :props="props">
+                                                    {{ props.row.appaterno }}
+                                                </q-td>
+                                                <q-td key="btnactions" :props="props" auto-width>
+                                                    <div class="row q-col-gutter-xs justify-end">
+                                                        <q-btn icon="menu" padding="xs" round flat color="grey">
+                                                            <q-menu auto-close transition-show="flip-right"  transition-hide="flip-left" self="center middle" anchor="center middle">
+                                                                <q-list dense rounded nav>
+                                                                    <q-item link clickable v-ripple :to="`/usuarios/view/${props.row.idcarnet}`">
+                                                                        <q-item-section>
+                                                                            <q-icon color="primary" size="sm" name="visibility"></q-icon>
+                                                                        </q-item-section>
+                                                                        <q-item-section>View</q-item-section>
+                                                                    </q-item>
+                                                                    <q-item link clickable v-ripple :to="`/usuarios/edit/${props.row.idcarnet}`">
+                                                                        <q-item-section>
+                                                                            <q-icon color="positive" size="sm" name="edit"></q-icon>
+                                                                        </q-item-section>
+                                                                        <q-item-section>Edit</q-item-section>
+                                                                    </q-item>
+                                                                    <q-item link clickable v-ripple @click="deleteItem(props.row.idcarnet)">
+                                                                        <q-item-section>
+                                                                            <q-icon color="negative" size="sm" name="delete_sweep"></q-icon>
+                                                                        </q-item-section>
+                                                                        <q-item-section>Delete</q-item-section>
+                                                                    </q-item>
+                                                                </q-list>
+                                                            </q-menu>
+                                                        </q-btn>
+                                                    </div>
+                                                </q-td>
+                                            </q-tr>
+                                        </template>
+                                        <!-- End of Table Layout-->
+                                        </q-table>
+                                        <div class="row justify-center">
+                                            <q-td></q-td>
+                                        </div>
+                                    </div>
+                                    <!-- page loading indicator template -->
+                                    <template v-if="loading">
+                                        <q-inner-loading :showing="loading">
+                                            <q-spinner color="primary" size="30px"> 
+                                            </q-spinner>
+                                        </q-inner-loading>
+                                    </template>
+                                    <!-- page empty record template -->
+                                    <template v-if="pageReady && !records.length">
+                                        <q-card :flat="$q.screen.gt.md">
+                                            <q-card-section>
+                                                <div class="text-grey text-h6 text-center">
+                                                    ningún record fue encontrado
+                                                </div>
+                                            </q-card-section>
+                                        </q-card>
+                                    </template>
+                                    <!-- page footer template-->
+                                    <template v-if="showFooter">
+                                        <div class="">
+                                            <q-separator />
+                                            <div class="q-pa-md" v-show="pageReady">
+                                                <div class="row items-center justify-between">
+                                                    <div class="row items-center q-col-gutter-md">
+                                                        <div>
+                                                            <q-btn round flat   no-caps  unelevated   color="negative" @click="deleteItem(selectedItems)" v-if="selectedItems.length" icon="delete_sweep" class="q-my-xs" title="Eliminar seleccionado">
+                                                                <q-tooltip>Delete Selected Items</q-tooltip>
+                                                            </q-btn>
+                                                        </div>
+                                                    </div>
+                                                    <div v-if="paginate && totalRecords > 0" class="row  items-center justify-between">
+                                                        <div class="col-auto">
+                                                            <q-chip square>Archivos {{recordsPosition}} de {{totalRecords}}</q-chip>
+                                                        </div>
+                                                        <div v-if="totalPages > 1">
+                                                            <q-pagination  color="primary"  v-model="pagination.page" :direction-links="true" :boundary-links="true" :max-pages="5" :boundary-numbers="true" :max="totalPages"></q-pagination>
+                                                        </div>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                                <!-- Detal Page Column -->
+                                <div class="col-12" v-if="currentRecord && !isSubPage">
+                                    <q-card  :flat="isSubPage" class=" nice-shadow-16">
+                                        <component :is="masterDetailPage" :scroll-into-view="true"></component>
+                                    </q-card>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</template>
+<script setup>
+	import { defineAsyncComponent, computed, ref, toRefs, onMounted } from 'vue';
+	import { useMeta } from 'quasar';
+	import { useApp } from 'src/composables/app';
+	import { useListPage } from 'src/composables/listpage';
+	import { usePageStore } from 'src/stores/page';
+	
+	const props = defineProps({
+		primaryKey : {
+			type : String,
+			default : 'idcarnet',
+		},
+		pageName : {
+			type : String,
+			default : 'usuarios',
+		},
+		routeName : {
+			type : String,
+			default : 'usuarioslist',
+		},
+		apiPath : {
+			type : String,
+			default : 'usuarios/index',
+		},
+		paginate: {
+			type: Boolean,
+			default: true,
+		},
+		scrollIntoView: {
+			type: Boolean,
+			default: true,
+		},
+		isSubPage: {
+			type: Boolean,
+			default: false,
+		},
+		showHeader: {
+			type: Boolean,
+			default: true,
+		},
+		showFooter: {
+			type: Boolean,
+			default: true,
+		},
+		showBreadcrumbs: {
+			type: Boolean,
+			default: true,
+		},
+		exportButton: {
+			type: Boolean,
+			default: true,
+		},
+		importButton: {
+			type: Boolean,
+			default: false,
+		},
+		multiCheckbox: {
+			type: Boolean,
+			default: true,
+		},
+		emptyRecordMsg: {
+			type: String,
+			default: "ningún record fue encontrado",
+		},
+		titleBeforeDelete: {
+			type: String,
+			default: "Eliminar el registro",
+		},
+		msgBeforeDelete: {
+			type: String,
+			default: "¿Seguro que quieres borrar este registro?",
+		},
+		msgAfterDelete: {
+			type: String,
+			default: "Grabar eliminado con éxito",
+		},
+		page: {
+			type: Number,
+			default: 1,
+		},
+		limit: {
+			type: Number,
+			default: 10,
+		},
+		mergeRecords: {
+			type: Boolean,
+			default: false,
+		},
+		search: {
+			type: String,
+			default: '',
+		},
+		fieldName: null,
+		fieldValue: null,
+		sortBy: {
+			type: String,
+			default: '',
+		},
+		sortType: {
+			type: String,
+			default: 'desc', //desc or asc
+		},
+	});
+	
+	const app = useApp();
+	
+	const defaultStoreState = {
+		filters: {
+		},
+		pagination: {
+			page: props.page,
+			rowsPerPage: props.limit,
+			rowsNumber: 0,
+			sortBy: props.sortBy,
+			descending: props.sortType == 'desc'
+		},
+		searchText: props.search,
+		primaryKey: props.primaryKey
+	}
+	const store = usePageStore(props.pageName,  defaultStoreState);
+	
+	// page hooks where logics resides
+	const page = useListPage({ store, props });
+	
+	const {records, filters, currentRecord, totalRecords,  selectedItems, expandedRows, pagination,} = toRefs(store.state);
+	const { pageReady, loading, searchText, } = toRefs(page.state);
+	
+	const {     totalPages, recordsPosition, } = page.computedProps;
+	
+	//page methods
+	const { load,     clearSearch,  setPagination, deleteItem, setCurrentRecord, isCurrentRecord,        } = page.methods;
+	
+	const pageTitle = computed({
+		get: function () {
+			return "Usuarios"
+		}
+	});
+	const masterDetailPage = computed(() => defineAsyncComponent(() => import("./detail-pages.vue")));
+	
+	useMeta(() => {
+		return {
+			title: pageTitle.value //set browser title
+		}
+	});
+	
+	onMounted(()=>{ 
+		load();
+	});
+</script>
+<style scoped>
+</style>
