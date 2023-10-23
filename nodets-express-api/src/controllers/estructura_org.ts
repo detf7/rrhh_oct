@@ -8,11 +8,32 @@ import DB from '../datasource';
 import { HttpRequest, HttpResponse } from '../helpers/http';
 import { body, validationResult, matchedData }  from 'express-validator';
 import { In } from 'typeorm';
+import Denominacion from '../models/denominacion.entity';
 const Estructura_Org = DB.Estructura_Org;
 const router = express.Router();
 
 
+export class MyClass {
+    private obj: any;
 
+    constructor(obj: any) {
+        this.obj = obj
+    }
+}
+
+class Employee {
+    id: string;
+    name: string;
+    title: string;
+    children: Employee[];
+
+    constructor(id: string, name: string, title: string) {
+        this.id = id;
+        this.name = name;
+        this.title = title;
+        this.children = [];
+    }
+}
 
 /**
  * Route to list estructura_org records
@@ -61,6 +82,96 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 		console.error("has crached", req.path, err);
 		return res.serverError(err);
 	}
+});
+
+/**
+ * Route to list estructura_org records
+ * @route {GET} /estructura_org/index/{fieldname}/{fieldvalue}
+ */
+router.get(['/', '/indexview/'], async (req:HttpRequest, res:HttpResponse) => {  
+	try {
+	/*
+	try{
+		const query = Estructura_Org.getQuery();
+
+		//return records and pager info
+		const pageData = await Estructura_Org.paginate(query, page, limit);
+		
+		return res.send(pageData);
+	}
+	catch(err) {
+		console.error("has crached", req.path, err);
+		return res.serverError(err);
+	}
+	*/
+
+
+	// Creating the type for the object
+type objType = {
+	obj_id: number;
+	obj_value: string;
+ };
+ // creating the array of objects
+ let objArray: Array<objType> = [
+	{ obj_id: 1, obj_value: "TutorialsPoint" },
+	{ obj_id: 2, obj_value: "TypeScript" },
+	{ obj_id: 3, obj_value: "Shubham" },
+	{ obj_id: 4, obj_value: "TutorialsPoint" },
+	{ obj_id: 5, obj_value: "TypeScript" },
+ ];
+
+
+
+ const querySpec = {
+	text: 'SELECT * FROM public.estructura_org'
+}
+
+let sqltext = `SELECT * FROM public.estructura_org`;
+let result = await rawQuery(sqltext);
+
+/*
+const momentoComida = result.map(function(comida) {
+    return comida.Denominacion;
+});
+*/
+const deliveries = [];
+//const rowsArray = Array.from(result.rows);
+
+/*for (const row of rowsArray) {
+	// Acceder a las columnas de cada fila por nombre
+	const obj = {
+	
+		obj_value: row.Denominacion
+	};
+	deliveries.push(obj);
+}
+*/
+
+const laoLao = new Employee("1", "XXXX", "Despacho Ministerial");
+const boMiao = new Employee("2", "YYYY", "department manager");
+const suMiao = new Employee("3", "Su Miao", "department manager");
+
+laoLao.children.push(boMiao, suMiao);
+suMiao.children.push(boMiao);
+
+
+
+for (let i = 0; i < result.length; i++) {
+    const item = result[i];
+    console.log(`Resultado ${i + 1}:`);
+    console.log(`Soa: ${item.soa}`);
+    console.log(`Sigla: ${item.sigla}`);
+    console.log(`nivel: ${item.nivel}`);
+
+}
+ return res.send(Employee);
+
+
+
+} catch (err) {
+	console.error("Ha ocurrido un error", req.path, err);
+	return res.serverError(err);
+}
 });
 
 
