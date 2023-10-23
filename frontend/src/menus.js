@@ -82,6 +82,14 @@ export const AppMenus = {
         "iconcolor": "",
         "target": "",
         "submenu": []
+      },
+      {
+        "path": "/planilla_presupuestaria",
+        "label": "Planilla Presupuestaria",
+        "icon": "blur_off",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
       }
     ]
   },
@@ -524,80 +532,80 @@ export const AppMenus = {
         "iconcolor": "",
         "target": "",
         "submenu": []
+      },
+      {
+        "path": "/fuente",
+        "label": "Fuente",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/denominacion/vista",
+        "label": "Vista",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/tab_esc",
+        "label": "Tab Esc",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/nivel_escala",
+        "label": "Nivel Escala",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/item_escala",
+        "label": "Item Escala",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/plantilla_estructura_org",
+        "label": "Plantilla Estructura Org",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/escala_t",
+        "label": "Escala T",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/categoria_escala",
+        "label": "Categoria Escala",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
+      },
+      {
+        "path": "/estructura_org",
+        "label": "Estructura Org",
+        "icon": "extension",
+        "iconcolor": "",
+        "target": "",
+        "submenu": []
       }
     ]
-  },
-  {
-    "path": "/fuente",
-    "label": "Fuente",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/categoria_escala",
-    "label": "Categoria Escala",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/denominacion/vista",
-    "label": "Vista",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/item_escala",
-    "label": "Item Escala",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/nivel_escala",
-    "label": "Nivel Escala",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/tab_esc",
-    "label": "Tab Esc",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/escala_t",
-    "label": "Escala T",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/estructura_org",
-    "label": "Estructura Org",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
-  },
-  {
-    "path": "/plantilla_estructura_org",
-    "label": "Plantilla Estructura Org",
-    "icon": "extension",
-    "iconcolor": "",
-    "target": "",
-    "submenu": []
   }
 ],
 	IdpermisoListHeaderItems: [
@@ -1800,85 +1808,6 @@ export const AppMenus = {
     "sortable": false,
     "name": "btnactions",
     "field": ""
-  }
-],
-	EoMaestraListHeaderItems: [
-  {
-    "label": "",
-    "align": "left",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  },
-  {
-    "label": "Id Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "id_eo",
-    "field": "id_eo"
-  },
-  {
-    "label": "Nro Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "nro_eo",
-    "field": "nro_eo"
-  },
-  {
-    "label": "Fecha Reg Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "fecha_reg_eo",
-    "field": "fecha_reg_eo"
-  },
-  {
-    "label": "Soa Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "soa_eo",
-    "field": "soa_eo"
-  },
-  {
-    "label": "Sigla Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "sigla_eo",
-    "field": "sigla_eo"
-  },
-  {
-    "label": "Dependencia Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "dependencia_eo",
-    "field": "dependencia_eo"
-  },
-  {
-    "label": "Cod Gestion Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "cod_gestion_eo",
-    "field": "cod_gestion_eo"
-  },
-  {
-    "label": "Rm Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "rm_eo",
-    "field": "rm_eo"
-  },
-  {
-    "label": "Nivel Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "nivel_eo",
-    "field": "nivel_eo"
-  },
-  {
-    "label": "Denominacion Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "denominacion_eo",
-    "field": "denominacion_eo"
   }
 ],
 	EscalaListHeaderItems: [
@@ -3133,43 +3062,6 @@ export const AppMenus = {
     "field": ""
   }
 ],
-	NivelEoListHeaderItems: [
-  {
-    "label": "",
-    "align": "left",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  },
-  {
-    "label": "Id Niv Eo",
-    "align": "left",
-    "sortable": false,
-    "name": "id_niv_eo",
-    "field": "id_niv_eo"
-  },
-  {
-    "label": "Nombre Nivel",
-    "align": "left",
-    "sortable": false,
-    "name": "nombre_nivel",
-    "field": "nombre_nivel"
-  },
-  {
-    "label": "Descripcion",
-    "align": "left",
-    "sortable": false,
-    "name": "descripcion",
-    "field": "descripcion"
-  },
-  {
-    "label": "Cod Gestion",
-    "align": "left",
-    "sortable": false,
-    "name": "cod_gestion",
-    "field": "cod_gestion"
-  }
-],
 	NivelEscalaListHeaderItems: [
   {
     "label": "",
@@ -3758,6 +3650,75 @@ export const AppMenus = {
     "field": ""
   }
 ],
+	PlanillaPresupuestariaListHeaderItems: [
+  {
+    "label": "",
+    "align": "left",
+    "sortable": false,
+    "name": "btnactions",
+    "field": ""
+  },
+  {
+    "label": "Idplanillapres",
+    "align": "left",
+    "sortable": false,
+    "name": "idplanillapres",
+    "field": "idplanillapres"
+  },
+  {
+    "label": "Fuente",
+    "align": "left",
+    "sortable": false,
+    "name": "fuente",
+    "field": "fuente"
+  },
+  {
+    "label": "Nivel",
+    "align": "left",
+    "sortable": false,
+    "name": "nivel",
+    "field": "nivel"
+  },
+  {
+    "label": "Cantidad Items",
+    "align": "left",
+    "sortable": false,
+    "name": "cantidad_items",
+    "field": "cantidad_items"
+  },
+  {
+    "label": "Haber Basico",
+    "align": "left",
+    "sortable": false,
+    "name": "haber_basico",
+    "field": "haber_basico"
+  },
+  {
+    "label": "Denominacion Cargo",
+    "align": "left",
+    "sortable": false,
+    "name": "denominacion_cargo",
+    "field": "denominacion_cargo"
+  },
+  {
+    "label": "Unidad Organiz",
+    "align": "left",
+    "sortable": false,
+    "name": "unidad_organiz",
+    "field": "unidad_organiz"
+  },
+  {
+    "label": "Clasificacion",
+    "align": "left",
+    "sortable": false,
+    "name": "clasificacion",
+    "field": "clasificacion"
+  }
+],
+	clasificacionItems: [    
+{value: "SUSTANTIVO", label: "SUSTANTIVO"},
+	{value: "ADMINISTRATIVO", label: "ADMINISTRATIVO"}
+    ],
 	PlanillasListHeaderItems: [
   {
     "label": "",
@@ -4614,43 +4575,6 @@ export const AppMenus = {
     "sortable": false,
     "name": "btnactions",
     "field": ""
-  }
-],
-	RmEoListHeaderItems: [
-  {
-    "label": "",
-    "align": "left",
-    "sortable": false,
-    "name": "btnactions",
-    "field": ""
-  },
-  {
-    "label": "Id Rm",
-    "align": "left",
-    "sortable": false,
-    "name": "id_rm",
-    "field": "id_rm"
-  },
-  {
-    "label": "Fecha Reg",
-    "align": "left",
-    "sortable": false,
-    "name": "fecha_reg",
-    "field": "fecha_reg"
-  },
-  {
-    "label": "Descripcion",
-    "align": "left",
-    "sortable": false,
-    "name": "descripcion",
-    "field": "descripcion"
-  },
-  {
-    "label": "Cod Gestion Rm",
-    "align": "left",
-    "sortable": false,
-    "name": "cod_gestion_rm",
-    "field": "cod_gestion_rm"
   }
 ],
 	RolesListHeaderItems: [

@@ -434,6 +434,142 @@ router.get('/role_id_option_list', async (req:HttpRequest, res:HttpResponse) => 
 
 
  /**
+ * Route to get fuente_option_list records
+ * @route {GET} /components_data/fuente_option_list
+ */
+router.get('/fuente_option_list', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT fuente_resumen AS value,fuente_resumen AS label FROM fuente ORDER BY fuente_resumen ASC` ;
+		let records = await rawQuery(sqltext );
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get denominacion_cargo_option_list records
+ * @route {GET} /components_data/denominacion_cargo_option_list
+ */
+router.get('/denominacion_cargo_option_list', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT desc_denominacion AS value,desc_denominacion AS label FROM denominacion WHERE haber_basico=$1  ORDER BY desc_denominacion ASC` ;
+		let queryParams = [];
+		queryParams.push(req.query.lookup_haber_basico);
+		let records = await rawQuery(sqltext , queryParams);
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get unidad_organiz_option_list records
+ * @route {GET} /components_data/unidad_organiz_option_list
+ */
+router.get('/unidad_organiz_option_list', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT detalle AS value,detalle AS label FROM unidad ORDER BY detalle ASC` ;
+		let records = await rawQuery(sqltext );
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get fuente_option_list_2 records
+ * @route {GET} /components_data/fuente_option_list_2
+ */
+router.get('/fuente_option_list_2', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT fuente_resumen AS value,fuente_resumen AS label FROM fuente ORDER BY fuente_resumen` ;
+		let records = await rawQuery(sqltext );
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get nivel_option_list_2 records
+ * @route {GET} /components_data/nivel_option_list_2
+ */
+router.get('/nivel_option_list_2', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT DISTINCT nivel AS value,nivel AS label FROM estructura_org ORDER BY nivel ASC` ;
+		let records = await rawQuery(sqltext );
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get denominacion_cargo_option_list_2 records
+ * @route {GET} /components_data/denominacion_cargo_option_list_2
+ */
+router.get('/denominacion_cargo_option_list_2', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT desc_denominacion AS value,desc_denominacion AS label FROM denominacion WHERE fuente=$1  ORDER BY desc_denominacion ASC` ;
+		let queryParams = [];
+		queryParams.push(req.query.lookup_fuente);
+		let records = await rawQuery(sqltext , queryParams);
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get planilla_presupuestaria_fuente_autofill records
+ * @route {GET} /components_data/planilla_presupuestaria_fuente_autofill
+ */
+router.get('/planilla_presupuestaria_fuente_autofill', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT codgestion FROM fuente WHERE fuente_resumen=$1` ;
+		let queryParams = [];
+		queryParams.push(req.query.value)
+		let records = await rawQuery(sqltext , queryParams);
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
+ * Route to get planilla_presupuestaria_denominacion_cargo_autofill records
+ * @route {GET} /components_data/planilla_presupuestaria_denominacion_cargo_autofill
+ */
+router.get('/planilla_presupuestaria_denominacion_cargo_autofill', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let sqltext = `SELECT haber_basico FROM denominacion WHERE desc_denominacion=$1` ;
+		let queryParams = [];
+		queryParams.push(req.query.value)
+		let records = await rawQuery(sqltext , queryParams);
+		return res.send(records);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+ /**
  * Route to get codpla_option_list records
  * @route {GET} /components_data/codpla_option_list
  */

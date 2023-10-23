@@ -30,7 +30,6 @@ import DetboletaController from './controllers/detboleta';
 import DetescalaController from './controllers/detescala';
 import DetitemController from './controllers/detitem';
 import EntidadController from './controllers/entidad';
-import EoMaestraController from './controllers/eo_maestra';
 import EscalaController from './controllers/escala';
 import EscalaTController from './controllers/escala_t';
 import EstructuraOrgController from './controllers/estructura_org';
@@ -45,7 +44,6 @@ import InfouserController from './controllers/infouser';
 import ItemEscalaController from './controllers/item_escala';
 import LogReportesController from './controllers/log_reportes';
 import MedidaController from './controllers/medida';
-import NivelEoController from './controllers/nivel_eo';
 import NivelEscalaController from './controllers/nivel_escala';
 import ParametrosDefinicionController from './controllers/parametros_definicion';
 import ParentescoController from './controllers/parentesco';
@@ -53,6 +51,7 @@ import PermanenteController from './controllers/permanente';
 import PermisosController from './controllers/permisos';
 import PermissionsController from './controllers/permissions';
 import PexternoController from './controllers/pexterno';
+import PlanillaPresupuestariaController from './controllers/planilla_presupuestaria';
 import PlanillasController from './controllers/planillas';
 import PlanillatemporalController from './controllers/planillatemporal';
 import PlantillaEstructuraOrgController from './controllers/plantilla_estructura_org';
@@ -62,7 +61,6 @@ import PoaController from './controllers/poa';
 import PreguntasController from './controllers/preguntas';
 import ProveedorController from './controllers/proveedor';
 import RegvacacionController from './controllers/regvacacion';
-import RmEoController from './controllers/rm_eo';
 import RolesController from './controllers/roles';
 import SalarioMinController from './controllers/salario_min';
 import StockController from './controllers/stock';
@@ -143,7 +141,6 @@ app.use('/api/detboleta', DetboletaController)
 app.use('/api/detescala', DetescalaController)
 app.use('/api/detitem', DetitemController)
 app.use('/api/entidad', EntidadController)
-app.use('/api/eo_maestra', EoMaestraController)
 app.use('/api/escala', EscalaController)
 app.use('/api/escala_t', EscalaTController)
 app.use('/api/estructura_org', EstructuraOrgController)
@@ -158,7 +155,6 @@ app.use('/api/infouser', InfouserController)
 app.use('/api/item_escala', ItemEscalaController)
 app.use('/api/log_reportes', LogReportesController)
 app.use('/api/medida', MedidaController)
-app.use('/api/nivel_eo', NivelEoController)
 app.use('/api/nivel_escala', NivelEscalaController)
 app.use('/api/parametros_definicion', ParametrosDefinicionController)
 app.use('/api/parentesco', ParentescoController)
@@ -166,6 +162,7 @@ app.use('/api/permanente', PermanenteController)
 app.use('/api/permisos', PermisosController)
 app.use('/api/permissions', PermissionsController)
 app.use('/api/pexterno', PexternoController)
+app.use('/api/planilla_presupuestaria', PlanillaPresupuestariaController)
 app.use('/api/planillas', PlanillasController)
 app.use('/api/planillatemporal', PlanillatemporalController)
 app.use('/api/plantilla_estructura_org', PlantillaEstructuraOrgController)
@@ -175,7 +172,6 @@ app.use('/api/poa', PoaController)
 app.use('/api/preguntas', PreguntasController)
 app.use('/api/proveedor', ProveedorController)
 app.use('/api/regvacacion', RegvacacionController)
-app.use('/api/rm_eo', RmEoController)
 app.use('/api/roles', RolesController)
 app.use('/api/salario_min', SalarioMinController)
 app.use('/api/stock', StockController)
