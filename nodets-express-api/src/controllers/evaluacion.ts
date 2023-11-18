@@ -96,6 +96,7 @@ router.post('/add/' ,
 		body('detgeneral').optional({nullable: true, checkFalsy: true}),
 		body('idevaluacion').not().isEmpty(),
 		body('observacion').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -153,6 +154,7 @@ router.post('/edit/:recid' ,
 		body('detgeneral').optional({nullable: true, checkFalsy: true}),
 		body('idevaluacion').optional({nullable: true}).not().isEmpty(),
 		body('observacion').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

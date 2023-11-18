@@ -74,32 +74,26 @@ export default class Escala extends BaseModel {
 	static listFields(): string[]{
 		return [
 			"idescala", 
-			"habilitado", 
 			"financiero", 
 			"categoria", 
 			"normativa_codigo", 
 			"nivel", 
 			"denominacion", 
 			"haberbasico", 
-			"numero_items", 
-			"costo_mensual", 
-			"codgestion"
+			"numero_items"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
 			"idescala", 
-			"habilitado", 
 			"financiero", 
 			"categoria", 
 			"normativa_codigo", 
 			"nivel", 
 			"denominacion", 
 			"haberbasico", 
-			"numero_items", 
-			"costo_mensual", 
-			"codgestion"
+			"numero_items"
 		];
 	}
 
@@ -116,8 +110,7 @@ export default class Escala extends BaseModel {
 			"habilitado", 
 			"academico", 
 			"detalle", 
-			"numero_items", 
-			"costo_mensual"
+			"numero_items"
 		];
 	}
 
@@ -134,13 +127,15 @@ export default class Escala extends BaseModel {
 			"habilitado", 
 			"academico", 
 			"detalle", 
-			"numero_items", 
-			"costo_mensual"
+			"numero_items"
 		];
 	}
 
 	static editFields(): string[]{
 		return [
+			"nivel", 
+			"denominacion", 
+			"numero_items", 
 			"idescala"
 		];
 	}
@@ -156,21 +151,70 @@ export default class Escala extends BaseModel {
 			"denominacion", 
 			"numero_items", 
 			"haberbasico", 
-			"costo_mensual", 
 			"idescala"
+		];
+	}
+
+	static listadoFields(): string[]{
+		return [
+			"idescala", 
+			"nivel", 
+			"haberbasico", 
+			"habilitado", 
+			"ageneral", 
+			"mgeneral", 
+			"aespecifica", 
+			"mespecifica", 
+			"codgestion", 
+			"entidad", 
+			"financiero", 
+			"organizacion", 
+			"categoria", 
+			"denominacion", 
+			"normativa_codigo", 
+			"numero_items", 
+			"costo_mensual", 
+			"academico", 
+			"detalle", 
+			"normativa_anyo"
+		];
+	}
+
+	static exportListadoFields(): string[]{
+		return [
+			"idescala", 
+			"nivel", 
+			"haberbasico", 
+			"habilitado", 
+			"ageneral", 
+			"mgeneral", 
+			"aespecifica", 
+			"mespecifica", 
+			"codgestion", 
+			"entidad", 
+			"financiero", 
+			"organizacion", 
+			"categoria", 
+			"denominacion", 
+			"normativa_codigo", 
+			"numero_items", 
+			"costo_mensual", 
+			"academico", 
+			"detalle", 
+			"normativa_anyo"
 		];
 	}
 
 	
 	static searchFields(): string{
 		const fields = [
-			"habilitado iLIKE :search", 
-			"financiero iLIKE :search", 
 			"categoria iLIKE :search", 
+			"CAST(nivel AS TEXT) iLIKE :search", 
 			"denominacion iLIKE :search", 
 			"CAST(haberbasico AS TEXT) iLIKE :search", 
-			"codgestion iLIKE :search", 
-			"academico iLIKE :search",
+			"CAST(numero_items AS TEXT) iLIKE :search", 
+			"habilitado iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

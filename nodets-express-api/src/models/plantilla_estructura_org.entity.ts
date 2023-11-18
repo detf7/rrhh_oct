@@ -47,12 +47,10 @@ export default class Plantilla_Estructura_Org extends BaseModel {
 			"nivel", 
 			"dependencia", 
 			"codentidad", 
-			"codgestion", 
 			"descripcion", 
 			"ley", 
 			"soa", 
-			"sigla", 
-			"glosa"
+			"sigla"
 		];
 	}
 
@@ -62,12 +60,10 @@ export default class Plantilla_Estructura_Org extends BaseModel {
 			"nivel", 
 			"dependencia", 
 			"codentidad", 
-			"codgestion", 
 			"descripcion", 
 			"ley", 
 			"soa", 
-			"sigla", 
-			"glosa"
+			"sigla"
 		];
 	}
 
@@ -103,7 +99,6 @@ export default class Plantilla_Estructura_Org extends BaseModel {
 
 	static editFields(): string[]{
 		return [
-			"idunidad", 
 			"nivel", 
 			"dependencia", 
 			"codentidad", 
@@ -112,18 +107,19 @@ export default class Plantilla_Estructura_Org extends BaseModel {
 			"ley", 
 			"soa", 
 			"sigla", 
-			"glosa"
+			"glosa", 
+			"idunidad"
 		];
 	}
 
 	
 	static searchFields(): string{
 		const fields = [
-			"codgestion iLIKE :search", 
 			"descripcion iLIKE :search", 
 			"ley iLIKE :search", 
 			"soa iLIKE :search", 
 			"sigla iLIKE :search", 
+			"codgestion iLIKE :search", 
 			"glosa iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';

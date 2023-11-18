@@ -37,6 +37,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Plantilla_Estructura_Org.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Plantilla_Estructura_Org.listFields(); //get columns to select
 		query.select(selectFields);

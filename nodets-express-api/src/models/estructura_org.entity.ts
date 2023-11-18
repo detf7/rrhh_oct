@@ -44,24 +44,20 @@ export default class Estructura_Org extends BaseModel {
 	static listFields(): string[]{
 		return [
 			"idunidad", 
-			"ley", 
 			"nivel", 
 			"descripcion", 
-			"sigla", 
-			"soa", 
-			"dependencia"
+			"dependencia", 
+			"ley"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
 			"idunidad", 
-			"ley", 
 			"nivel", 
 			"descripcion", 
-			"sigla", 
-			"soa", 
-			"dependencia"
+			"dependencia", 
+			"ley"
 		];
 	}
 
@@ -146,9 +142,9 @@ export default class Estructura_Org extends BaseModel {
 	
 	static searchFields(): string{
 		const fields = [
-			"ley iLIKE :search", 
 			"CAST(nivel AS TEXT) iLIKE :search", 
 			"descripcion iLIKE :search", 
+			"ley iLIKE :search", 
 			"sigla iLIKE :search", 
 			"soa iLIKE :search", 
 			"glosa iLIKE :search", 

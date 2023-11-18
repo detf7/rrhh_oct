@@ -33,6 +33,9 @@ export default class Evaluacion extends BaseModel {
 	@Column({name: 'observacion' })
 	observacion: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -44,7 +47,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica", 
 			"detgeneral", 
 			"idevaluacion", 
-			"observacion"
+			"observacion", 
+			"codgestion"
 		];
 	}
 
@@ -57,7 +61,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica", 
 			"detgeneral", 
 			"idevaluacion", 
-			"observacion"
+			"observacion", 
+			"codgestion"
 		];
 	}
 
@@ -70,7 +75,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica", 
 			"detgeneral", 
 			"idevaluacion", 
-			"observacion"
+			"observacion", 
+			"codgestion"
 		];
 	}
 
@@ -83,7 +89,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica", 
 			"detgeneral", 
 			"idevaluacion", 
-			"observacion"
+			"observacion", 
+			"codgestion"
 		];
 	}
 
@@ -96,7 +103,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica", 
 			"detgeneral", 
 			"idevaluacion", 
-			"observacion"
+			"observacion", 
+			"codgestion"
 		];
 	}
 
@@ -106,7 +114,8 @@ export default class Evaluacion extends BaseModel {
 			"detespecifica iLIKE :search", 
 			"detgeneral iLIKE :search", 
 			"idevaluacion iLIKE :search", 
-			"observacion iLIKE :search",
+			"observacion iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

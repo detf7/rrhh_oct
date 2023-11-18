@@ -33,6 +33,9 @@ export default class Unidad extends BaseModel {
 	@Column({name: 'sigla' })
 	sigla: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -44,7 +47,8 @@ export default class Unidad extends BaseModel {
 			"nivel", 
 			"detalle", 
 			"soa", 
-			"sigla"
+			"sigla", 
+			"codgestion"
 		];
 	}
 
@@ -57,7 +61,8 @@ export default class Unidad extends BaseModel {
 			"nivel", 
 			"detalle", 
 			"soa", 
-			"sigla"
+			"sigla", 
+			"codgestion"
 		];
 	}
 
@@ -70,7 +75,8 @@ export default class Unidad extends BaseModel {
 			"nivel", 
 			"detalle", 
 			"soa", 
-			"sigla"
+			"sigla", 
+			"codgestion"
 		];
 	}
 
@@ -83,7 +89,8 @@ export default class Unidad extends BaseModel {
 			"nivel", 
 			"detalle", 
 			"soa", 
-			"sigla"
+			"sigla", 
+			"codgestion"
 		];
 	}
 
@@ -96,7 +103,8 @@ export default class Unidad extends BaseModel {
 			"nivel", 
 			"detalle", 
 			"soa", 
-			"sigla"
+			"sigla", 
+			"codgestion"
 		];
 	}
 
@@ -105,7 +113,8 @@ export default class Unidad extends BaseModel {
 		const fields = [
 			"detalle iLIKE :search", 
 			"soa iLIKE :search", 
-			"sigla iLIKE :search",
+			"sigla iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

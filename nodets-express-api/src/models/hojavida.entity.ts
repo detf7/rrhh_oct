@@ -48,13 +48,15 @@ export default class Hojavida extends BaseModel {
 	@Column({name: 'ciudad' })
 	ciudad: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
 		return [
 			"telefono", 
 			"fnacimiento", 
-			"idhoja", 
 			"correo", 
 			"estcivil", 
 			"direccion", 
@@ -64,7 +66,9 @@ export default class Hojavida extends BaseModel {
 			"archivo", 
 			"codusuario", 
 			"nacionalidad", 
-			"ciudad"
+			"ciudad", 
+			"codgestion", 
+			"idhoja"
 		];
 	}
 
@@ -72,7 +76,6 @@ export default class Hojavida extends BaseModel {
 		return [
 			"telefono", 
 			"fnacimiento", 
-			"idhoja", 
 			"correo", 
 			"estcivil", 
 			"direccion", 
@@ -82,7 +85,9 @@ export default class Hojavida extends BaseModel {
 			"archivo", 
 			"codusuario", 
 			"nacionalidad", 
-			"ciudad"
+			"ciudad", 
+			"codgestion", 
+			"idhoja"
 		];
 	}
 
@@ -90,7 +95,6 @@ export default class Hojavida extends BaseModel {
 		return [
 			"telefono", 
 			"fnacimiento", 
-			"idhoja", 
 			"correo", 
 			"estcivil", 
 			"direccion", 
@@ -100,7 +104,9 @@ export default class Hojavida extends BaseModel {
 			"archivo", 
 			"codusuario", 
 			"nacionalidad", 
-			"ciudad"
+			"ciudad", 
+			"codgestion", 
+			"idhoja"
 		];
 	}
 
@@ -108,7 +114,6 @@ export default class Hojavida extends BaseModel {
 		return [
 			"telefono", 
 			"fnacimiento", 
-			"idhoja", 
 			"correo", 
 			"estcivil", 
 			"direccion", 
@@ -118,7 +123,9 @@ export default class Hojavida extends BaseModel {
 			"archivo", 
 			"codusuario", 
 			"nacionalidad", 
-			"ciudad"
+			"ciudad", 
+			"codgestion", 
+			"idhoja"
 		];
 	}
 
@@ -126,7 +133,6 @@ export default class Hojavida extends BaseModel {
 		return [
 			"telefono", 
 			"fnacimiento", 
-			"idhoja", 
 			"correo", 
 			"estcivil", 
 			"direccion", 
@@ -136,7 +142,9 @@ export default class Hojavida extends BaseModel {
 			"archivo", 
 			"codusuario", 
 			"nacionalidad", 
-			"ciudad"
+			"ciudad", 
+			"codgestion", 
+			"idhoja"
 		];
 	}
 
@@ -152,7 +160,8 @@ export default class Hojavida extends BaseModel {
 			"archivo iLIKE :search", 
 			"codusuario iLIKE :search", 
 			"nacionalidad iLIKE :search", 
-			"ciudad iLIKE :search",
+			"ciudad iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

@@ -33,6 +33,9 @@ export default class Experiencia extends BaseModel {
 	@Column({name: 'funciones' })
 	funciones: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -44,7 +47,8 @@ export default class Experiencia extends BaseModel {
 			"f_inicio", 
 			"entidad", 
 			"cargo", 
-			"funciones"
+			"funciones", 
+			"codgestion"
 		];
 	}
 
@@ -57,7 +61,8 @@ export default class Experiencia extends BaseModel {
 			"f_inicio", 
 			"entidad", 
 			"cargo", 
-			"funciones"
+			"funciones", 
+			"codgestion"
 		];
 	}
 
@@ -70,7 +75,8 @@ export default class Experiencia extends BaseModel {
 			"f_inicio", 
 			"entidad", 
 			"cargo", 
-			"funciones"
+			"funciones", 
+			"codgestion"
 		];
 	}
 
@@ -83,7 +89,8 @@ export default class Experiencia extends BaseModel {
 			"f_inicio", 
 			"entidad", 
 			"cargo", 
-			"funciones"
+			"funciones", 
+			"codgestion"
 		];
 	}
 
@@ -96,7 +103,8 @@ export default class Experiencia extends BaseModel {
 			"f_inicio", 
 			"entidad", 
 			"cargo", 
-			"funciones"
+			"funciones", 
+			"codgestion"
 		];
 	}
 
@@ -105,7 +113,8 @@ export default class Experiencia extends BaseModel {
 		const fields = [
 			"entidad iLIKE :search", 
 			"cargo iLIKE :search", 
-			"funciones iLIKE :search",
+			"funciones iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

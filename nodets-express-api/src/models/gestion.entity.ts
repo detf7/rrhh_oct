@@ -33,6 +33,12 @@ export default class Gestion extends BaseModel {
 	@Column({name: 'anyo' })
 	anyo: number
 	
+	@Column({name: 'id' })
+	id: number
+	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -40,7 +46,9 @@ export default class Gestion extends BaseModel {
 			"idgestion", 
 			"habilitado", 
 			"detalle", 
-			"anyo"
+			"anyo", 
+			"id", 
+			"codgestion"
 		];
 	}
 
@@ -49,7 +57,9 @@ export default class Gestion extends BaseModel {
 			"idgestion", 
 			"habilitado", 
 			"detalle", 
-			"anyo"
+			"anyo", 
+			"id", 
+			"codgestion"
 		];
 	}
 
@@ -62,7 +72,9 @@ export default class Gestion extends BaseModel {
 			"mes_desc", 
 			"detalle", 
 			"idgestion", 
-			"anyo"
+			"anyo", 
+			"id", 
+			"codgestion"
 		];
 	}
 
@@ -75,7 +87,9 @@ export default class Gestion extends BaseModel {
 			"mes_desc", 
 			"detalle", 
 			"idgestion", 
-			"anyo"
+			"anyo", 
+			"id", 
+			"codgestion"
 		];
 	}
 
@@ -84,11 +98,29 @@ export default class Gestion extends BaseModel {
 			"idgestion", 
 			"habilitado", 
 			"detalle", 
-			"anyo"
+			"id", 
+			"codgestion"
+		];
+	}
+
+	static editarFields(): string[]{
+		return [
+			"idgestion", 
+			"habilitado", 
+			"detalle", 
+			"anyo", 
+			"codgestion"
 		];
 	}
 
 	
+	static searchFields(): string{
+		const fields = [
+			"codgestion iLIKE :search",
+		];
+		return '(' + fields.join(' OR ') + ')';
+	}
+
 	
 	
 }

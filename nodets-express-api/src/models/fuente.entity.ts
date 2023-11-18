@@ -26,18 +26,18 @@ export default class Fuente extends BaseModel {
 	static listFields(): string[]{
 		return [
 			"idfuente", 
+			"codgestion", 
 			"fuente_desc", 
-			"fuente_resumen", 
-			"codgestion"
+			"fuente_resumen"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
 			"idfuente", 
+			"codgestion", 
 			"fuente_desc", 
-			"fuente_resumen", 
-			"codgestion"
+			"fuente_resumen"
 		];
 	}
 
@@ -70,9 +70,9 @@ export default class Fuente extends BaseModel {
 	
 	static searchFields(): string{
 		const fields = [
+			"codgestion iLIKE :search", 
 			"fuente_desc iLIKE :search", 
-			"fuente_resumen iLIKE :search", 
-			"codgestion iLIKE :search",
+			"fuente_resumen iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

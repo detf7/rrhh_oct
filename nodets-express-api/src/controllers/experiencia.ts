@@ -37,6 +37,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Experiencia.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Experiencia.listFields(); //get columns to select
 		query.select(selectFields);
@@ -95,6 +96,7 @@ router.post('/add/' ,
 		body('entidad').optional({nullable: true, checkFalsy: true}),
 		body('cargo').optional({nullable: true, checkFalsy: true}),
 		body('funciones').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -151,6 +153,7 @@ router.post('/edit/:recid' ,
 		body('entidad').optional({nullable: true, checkFalsy: true}),
 		body('cargo').optional({nullable: true, checkFalsy: true}),
 		body('funciones').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

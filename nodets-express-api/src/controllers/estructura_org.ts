@@ -63,6 +63,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Estructura_Org.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Estructura_Org.listFields(); //get columns to select
 		query.select(selectFields);
@@ -71,6 +72,12 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 		const orderBy = req.getOrderBy('idunidad', 'DESC');
 		if(orderBy){
 			query.orderBy(orderBy.column, orderBy.orderType);
+		}
+		if(req.query.export){
+			const exportFields = Estructura_Org.exportListFields(); // get export fields
+			query.select(exportFields);
+			let records = await query.getRawMany();
+			return EstructuraOrgListExport(records, req, res);
 		}
 		
 		//return records and pager info
@@ -204,7 +211,6 @@ router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/add/' , 
 	[
-		body('codgestion').optional({nullable: true, checkFalsy: true}),
 		body('ley').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
@@ -231,8 +237,8 @@ router.post('/add/' ,
     */
 async function afterAdd(record, req:HttpRequest){
     //enter statement here
-    let queryParams = [  record.ley , record.codgestion];
-    let sqltext = `CALL generarestructura($1, $2)`;
+    let queryParams = [  record.ley];
+    let sqltext = `CALL generarestructura($1)`;
     let result = await rawQuery(sqltext, queryParams);
     // Procesar el resultado aquí
 }
@@ -332,12 +338,8 @@ router.get('/delete/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/agregarorg/' , 
 	[
-		body('nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('descripcion').not().isEmpty(),
-		body('sigla').optional({nullable: true, checkFalsy: true}),
-		body('soa').optional({nullable: true, checkFalsy: true}),
-		body('glosa').optional({nullable: true, checkFalsy: true}),
-		body('dependencia').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('dependencia').optional({nullable: true, checkFalsy: true}),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -347,12 +349,6 @@ router.post('/agregarorg/' ,
 			return res.badRequest(errorMsg);
 		}
 		let modeldata = matchedData(req, { locations: ['body'] }); // get the validated data
-		
-		//check if soa already exists
-		let soaExists = await Estructura_Org.getQuery().where({'soa': modeldata.soa}).exists();
-		if(soaExists){
-			return res.badRequest(`${modeldata.soa} already exist.`);
-		}
 		
 		//save Estructura_Org record
 		let record = await Estructura_Org.save(modeldata);

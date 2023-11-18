@@ -37,6 +37,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Estudios.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Estudios.listFields(); //get columns to select
 		query.select(selectFields);
@@ -96,6 +97,7 @@ router.post('/add/' ,
 		body('g_fin').optional({nullable: true, checkFalsy: true}),
 		body('titulo').optional({nullable: true, checkFalsy: true}),
 		body('tipo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -153,6 +155,7 @@ router.post('/edit/:recid' ,
 		body('g_fin').optional({nullable: true, checkFalsy: true}),
 		body('titulo').optional({nullable: true, checkFalsy: true}),
 		body('tipo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

@@ -3,6 +3,7 @@
 */
 import express from 'express';
 import utils from '../helpers/utils';
+import { rawQuery } from '../datasource';
 import DB from '../datasource';
 import { HttpRequest, HttpResponse } from '../helpers/http';
 import { body, validationResult, matchedData }  from 'express-validator';
@@ -32,6 +33,11 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			query.where(`${fieldName}=:fieldValue`, {fieldValue});
 		}
 		
+		
+		if(search){
+			let searchFields = Gestion.searchFields(); // get columns to search
+			query.andWhere(searchFields, {search: `%${search}%`});
+		}
 		
 		const selectFields = Gestion.listFields(); //get columns to select
 		query.select(selectFields);
@@ -83,10 +89,10 @@ router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/add/' , 
 	[
-		body('idgestion').not().isEmpty(),
 		body('habilitado').not().isEmpty(),
 		body('detalle').optional({nullable: true, checkFalsy: true}),
 		body('anyo').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -96,6 +102,7 @@ router.post('/add/' ,
 			return res.badRequest(errorMsg);
 		}
 		let modeldata = matchedData(req, { locations: ['body'] }); // get the validated data
+		await beforeAdd(modeldata, req);
 		
 		//save Gestion record
 		let record = await Gestion.save(modeldata);
@@ -105,6 +112,18 @@ router.post('/add/' ,
 		return res.serverError(err);
 	}
 });
+/**
+    * Before create new record
+    * @param {object} postdata // validated form data used to create new record
+    */
+async function beforeAdd(postdata, req:HttpRequest){
+    //enter statement here
+    const sqltext = `select generar_idgestion()` ;
+    const records = await rawQuery(sqltext);
+    //  console.log("valores ", records[0]);
+    // console.log("postdata ROA ", postdata);
+    postdata.idgestion = records[0].generar_idgestion;
+}
 
 
 /**
@@ -136,10 +155,9 @@ router.get('/edit/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/edit/:recid' , 
 	[
-		body('idgestion').optional({nullable: true}).not().isEmpty(),
 		body('habilitado').optional({nullable: true}).not().isEmpty(),
 		body('detalle').optional({nullable: true, checkFalsy: true}),
-		body('anyo').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{
@@ -162,12 +180,24 @@ router.post('/edit/:recid' ,
 		}
 		Object.assign(record, modeldata); // update record with form input
 		await query.update().set(modeldata).execute();
+		await afterEdit(recid, record, req);
 		return res.send(record);
 	}
 	catch(err){
 		return res.serverError(err);
 	}
 });
+/**
+    * After page record updated
+    * @param {string} recid // updated record id
+    * @param {object} record // updated page record
+    */
+async function afterEdit(recid, record, req:HttpRequest){
+    //enter statement here
+    let queryParams = [record.idgestion];
+    let sqltext = `CALL actualiza_gestion_act($1)`;
+    let result = await rawQuery(sqltext, queryParams);
+}
 
 
 /**
@@ -197,4 +227,80 @@ router.get('/delete/:recid', async (req:HttpRequest, res:HttpResponse) => {
 		return res.serverError(err);
 	}
 });
+
+
+/**
+ * Route to get  Gestion record for edit
+ * @route {GET} /gestion/edit/{recid}
+ */
+router.get('/editar/:recid', async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let recid = req.params.recid;
+		let query = Gestion.getQuery();
+		const editFields = Gestion.editarFields(); // get fields to edit
+		query.where("idgestion=:recid", { recid });
+		query.select(editFields);
+		let record = await query.getRawOne();
+		if(!record){
+			return res.recordNotFound();
+		}
+		return res.send(record);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+
+
+/**
+ * Route to update  Gestion record
+ * @route {POST} /gestion/edit/{recid}
+ */
+router.post('/editar/:recid' , 
+	[
+		body('idgestion').optional({nullable: true}).not().isEmpty(),
+		body('habilitado').optional({nullable: true}).not().isEmpty(),
+		body('detalle').optional({nullable: true, checkFalsy: true}),
+		body('anyo').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
+	]
+, async (req:HttpRequest, res:HttpResponse) => {
+	try{
+		let errors = validationResult(req); // get validation errors if any
+		if (!errors.isEmpty()) {
+			let errorMsg = utils.formatValidationError(errors.array());
+			return res.badRequest(errorMsg);
+		}
+		const recid = req.params.recid;
+		
+		const editFields = Gestion.editarFields();  // get fields to edit
+		
+		let modeldata = matchedData(req, { locations: ['body'], includeOptionals: true }); // get validated data
+		const query = Gestion.getQuery();
+		query.where("idgestion=:recid", { recid });
+		query.select(editFields);
+		const record = await query.getRawOne();
+		if(!record){
+			return res.recordNotFound();
+		}
+		Object.assign(record, modeldata); // update record with form input
+		await query.update().set(modeldata).execute();
+		await afterEditar(recid, record, req);
+		return res.send(record);
+	}
+	catch(err){
+		return res.serverError(err);
+	}
+});
+/**
+    * After page record updated
+    * @param {string} recid // updated record id
+    * @param {object} record // updated page record
+    */
+async function afterEditar(recid, record, req:HttpRequest){
+    //enter statement here
+      let queryParams = [record.idgestion];
+    let sqltext = `CALL actualiza_gestion_act($1)`;
+    let result = await rawQuery(sqltext, queryParams);
+}
 export default router;

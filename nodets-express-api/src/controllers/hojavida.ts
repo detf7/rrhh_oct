@@ -37,6 +37,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Hojavida.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Hojavida.listFields(); //get columns to select
 		query.select(selectFields);
@@ -100,6 +101,7 @@ router.post('/add/' ,
 		body('codusuario').optional({nullable: true, checkFalsy: true}),
 		body('nacionalidad').optional({nullable: true, checkFalsy: true}),
 		body('ciudad').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -161,6 +163,7 @@ router.post('/edit/:recid' ,
 		body('codusuario').optional({nullable: true, checkFalsy: true}),
 		body('nacionalidad').optional({nullable: true, checkFalsy: true}),
 		body('ciudad').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

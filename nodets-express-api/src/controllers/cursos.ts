@@ -93,6 +93,7 @@ router.post('/add/' ,
 		body('detalle').optional({nullable: true, checkFalsy: true}),
 		body('institucion').optional({nullable: true, checkFalsy: true}),
 		body('detperiodo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').not().isEmpty(),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -147,6 +148,7 @@ router.post('/edit/:recid' ,
 		body('detalle').optional({nullable: true, checkFalsy: true}),
 		body('institucion').optional({nullable: true, checkFalsy: true}),
 		body('detperiodo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true}).not().isEmpty(),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

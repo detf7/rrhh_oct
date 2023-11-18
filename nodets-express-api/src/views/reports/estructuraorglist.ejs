@@ -1,0 +1,24 @@
+
+<div id="report-title"><h1></h1></div>
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Idunidad</th>
+            <th>Nivel</th>
+            <th>Descripcion</th>
+            <th>Dependencia</th>
+            <th>Ley</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(record){ %>
+        <tr>
+            <td><%= record.idunidad %></td>
+            <td><%= record.nivel %></td>
+            <td><%= record.descripcion %></td>
+            <td><%= record.dependencia %></td>
+            <td><%= record.ley %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

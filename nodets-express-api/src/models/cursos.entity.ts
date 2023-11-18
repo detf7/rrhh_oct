@@ -27,6 +27,9 @@ export default class Cursos extends BaseModel {
 	@Column({name: 'detperiodo' })
 	detperiodo: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -36,7 +39,8 @@ export default class Cursos extends BaseModel {
 			"codhoja", 
 			"detalle", 
 			"institucion", 
-			"detperiodo"
+			"detperiodo", 
+			"codgestion"
 		];
 	}
 
@@ -47,7 +51,8 @@ export default class Cursos extends BaseModel {
 			"codhoja", 
 			"detalle", 
 			"institucion", 
-			"detperiodo"
+			"detperiodo", 
+			"codgestion"
 		];
 	}
 
@@ -58,7 +63,8 @@ export default class Cursos extends BaseModel {
 			"codhoja", 
 			"detalle", 
 			"institucion", 
-			"detperiodo"
+			"detperiodo", 
+			"codgestion"
 		];
 	}
 
@@ -69,7 +75,8 @@ export default class Cursos extends BaseModel {
 			"codhoja", 
 			"detalle", 
 			"institucion", 
-			"detperiodo"
+			"detperiodo", 
+			"codgestion"
 		];
 	}
 
@@ -80,7 +87,8 @@ export default class Cursos extends BaseModel {
 			"codhoja", 
 			"detalle", 
 			"institucion", 
-			"detperiodo"
+			"detperiodo", 
+			"codgestion"
 		];
 	}
 
@@ -89,7 +97,8 @@ export default class Cursos extends BaseModel {
 		const fields = [
 			"detalle iLIKE :search", 
 			"institucion iLIKE :search", 
-			"detperiodo iLIKE :search",
+			"detperiodo iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

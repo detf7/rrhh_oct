@@ -1,13 +1,11 @@
 import { BaseEntity, DataSource, SelectQueryBuilder } from 'typeorm';
 import config from './config';
 
-import _Idpermiso from './models/_idpermiso.entity';
 import Antiguedad from './models/antiguedad.entity';
 import Archivos from './models/archivos.entity';
 import Cas from './models/cas.entity';
 import Categoria from './models/categoria.entity';
 import Categoria_Escala from './models/categoria_escala.entity';
-import Cod_Soa from './models/cod_soa.entity';
 import Comunicados from './models/comunicados.entity';
 import Configuracion from './models/configuracion.entity';
 import Cursos from './models/cursos.entity';
@@ -23,17 +21,20 @@ import Entidad from './models/entidad.entity';
 import Eo_Maestra from './models/eo_maestra.entity';
 import Escala from './models/escala.entity';
 import Escala_T from './models/escala_t.entity';
+import Estadocivil from './models/estadocivil.entity';
 import Estructura_Org from './models/estructura_org.entity';
 import Estudios from './models/estudios.entity';
 import Evaluacion from './models/evaluacion.entity';
 import Eventuales from './models/eventuales.entity';
 import Experiencia from './models/experiencia.entity';
 import Fuente from './models/fuente.entity';
+import Genero from './models/genero.entity';
 import Gestion from './models/gestion.entity';
 import Hojavida from './models/hojavida.entity';
 import Infouser from './models/infouser.entity';
 import Item_Escala from './models/item_escala.entity';
 import Log_Reportes from './models/log_reportes.entity';
+import Maxid from './models/maxid.entity';
 import Medida from './models/medida.entity';
 import Nivel_Eo from './models/nivel_eo.entity';
 import Nivel_Escala from './models/nivel_escala.entity';
@@ -43,16 +44,16 @@ import Permanente from './models/permanente.entity';
 import Permisos from './models/permisos.entity';
 import Permissions from './models/permissions.entity';
 import Pexterno from './models/pexterno.entity';
+import Planilla_Presupuestaria from './models/planilla_presupuestaria.entity';
 import Planillas from './models/planillas.entity';
 import Planillatemporal from './models/planillatemporal.entity';
 import Plantilla_Estructura_Org from './models/plantilla_estructura_org.entity';
-import Plarefrigerio from './models/plarefrigerio.entity';
+import Plantillauo from './models/plantillauo.entity';
 import Plasalario from './models/plasalario.entity';
 import Poa from './models/poa.entity';
 import Preguntas from './models/preguntas.entity';
 import Proveedor from './models/proveedor.entity';
 import Regvacacion from './models/regvacacion.entity';
-import Rm_Eo from './models/rm_eo.entity';
 import Roles from './models/roles.entity';
 import Salario_Min from './models/salario_min.entity';
 import Stock from './models/stock.entity';
@@ -82,13 +83,11 @@ const AppDataSource = new DataSource(
 );
 
 const DB = {
-  _Idpermiso,
-	Antiguedad,
+  Antiguedad,
 	Archivos,
 	Cas,
 	Categoria,
 	Categoria_Escala,
-	Cod_Soa,
 	Comunicados,
 	Configuracion,
 	Cursos,
@@ -104,17 +103,20 @@ const DB = {
 	Eo_Maestra,
 	Escala,
 	Escala_T,
+	Estadocivil,
 	Estructura_Org,
 	Estudios,
 	Evaluacion,
 	Eventuales,
 	Experiencia,
 	Fuente,
+	Genero,
 	Gestion,
 	Hojavida,
 	Infouser,
 	Item_Escala,
 	Log_Reportes,
+	Maxid,
 	Medida,
 	Nivel_Eo,
 	Nivel_Escala,
@@ -124,16 +126,16 @@ const DB = {
 	Permisos,
 	Permissions,
 	Pexterno,
+	Planilla_Presupuestaria,
 	Planillas,
 	Planillatemporal,
 	Plantilla_Estructura_Org,
-	Plarefrigerio,
+	Plantillauo,
 	Plasalario,
 	Poa,
 	Preguntas,
 	Proveedor,
 	Regvacacion,
-	Rm_Eo,
 	Roles,
 	Salario_Min,
 	Stock,

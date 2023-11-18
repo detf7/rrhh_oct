@@ -117,6 +117,10 @@ router.post('/register',
 		//hash password before save
 		modeldata.password = utils.passwordHash(modeldata.password);
 		
+		// set default role for user
+		const roleId =  await DB.Roles.findValue('role_id', {role_name: 'Admin'});
+		modeldata['user_role_id'] = roleId;
+		
 		//check if usuario already exists
 		let usuarioExists = await Users.getQuery().where({'usuario': modeldata.usuario}).exists();
 		if(usuarioExists){

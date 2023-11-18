@@ -27,7 +27,6 @@ export default class Nivel_Escala extends BaseModel {
 		return [
 			"id_nivel_esc", 
 			"valor_nivel", 
-			"id_fk_denom", 
 			"descripcion_niv"
 		];
 	}
@@ -36,7 +35,6 @@ export default class Nivel_Escala extends BaseModel {
 		return [
 			"id_nivel_esc", 
 			"valor_nivel", 
-			"id_fk_denom", 
 			"descripcion_niv"
 		];
 	}
@@ -62,9 +60,7 @@ export default class Nivel_Escala extends BaseModel {
 	static editFields(): string[]{
 		return [
 			"id_nivel_esc", 
-			"valor_nivel", 
-			"id_fk_denom", 
-			"descripcion_niv"
+			"valor_nivel"
 		];
 	}
 

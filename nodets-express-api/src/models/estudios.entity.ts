@@ -36,6 +36,9 @@ export default class Estudios extends BaseModel {
 	@Column({name: 'tipo' })
 	tipo: string
 	
+	@Column({name: 'codgestion' })
+	codgestion: string
+	
 	
 	
 	static listFields(): string[]{
@@ -48,7 +51,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio", 
 			"g_fin", 
 			"titulo", 
-			"tipo"
+			"tipo", 
+			"codgestion"
 		];
 	}
 
@@ -62,7 +66,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio", 
 			"g_fin", 
 			"titulo", 
-			"tipo"
+			"tipo", 
+			"codgestion"
 		];
 	}
 
@@ -76,7 +81,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio", 
 			"g_fin", 
 			"titulo", 
-			"tipo"
+			"tipo", 
+			"codgestion"
 		];
 	}
 
@@ -90,7 +96,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio", 
 			"g_fin", 
 			"titulo", 
-			"tipo"
+			"tipo", 
+			"codgestion"
 		];
 	}
 
@@ -104,7 +111,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio", 
 			"g_fin", 
 			"titulo", 
-			"tipo"
+			"tipo", 
+			"codgestion"
 		];
 	}
 
@@ -117,7 +125,8 @@ export default class Estudios extends BaseModel {
 			"g_inicio iLIKE :search", 
 			"g_fin iLIKE :search", 
 			"titulo iLIKE :search", 
-			"tipo iLIKE :search",
+			"tipo iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

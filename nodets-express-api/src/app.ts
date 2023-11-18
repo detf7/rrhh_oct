@@ -4,6 +4,7 @@ import cors from 'cors';
 import ejs from 'ejs';
 import config from './config';
 import { HttpRequest, HttpResponse, HttpMiddleWare } from './helpers/http';
+import RbacMiddleWare from  './helpers/rbac';
 import { AppDataSource } from './datasource';
 import HomeController from './controllers/home';
 import ComponentsDataController from './controllers/components_data';
@@ -11,13 +12,11 @@ import FileUploaderController from './controllers/fileuploader';
 import S3UploaderController from './controllers/s3uploader';
 import AuthController from './controllers/auth';
 import AccountController from './controllers/account';
-import IdpermisoController from './controllers/_idpermiso';
 import AntiguedadController from './controllers/antiguedad';
 import ArchivosController from './controllers/archivos';
 import CasController from './controllers/cas';
 import CategoriaController from './controllers/categoria';
 import CategoriaEscalaController from './controllers/categoria_escala';
-import CodSoaController from './controllers/cod_soa';
 import ComunicadosController from './controllers/comunicados';
 import ConfiguracionController from './controllers/configuracion';
 import CursosController from './controllers/cursos';
@@ -30,20 +29,25 @@ import DetboletaController from './controllers/detboleta';
 import DetescalaController from './controllers/detescala';
 import DetitemController from './controllers/detitem';
 import EntidadController from './controllers/entidad';
+import EoMaestraController from './controllers/eo_maestra';
 import EscalaController from './controllers/escala';
 import EscalaTController from './controllers/escala_t';
+import EstadocivilController from './controllers/estadocivil';
 import EstructuraOrgController from './controllers/estructura_org';
 import EstudiosController from './controllers/estudios';
 import EvaluacionController from './controllers/evaluacion';
 import EventualesController from './controllers/eventuales';
 import ExperienciaController from './controllers/experiencia';
 import FuenteController from './controllers/fuente';
+import GeneroController from './controllers/genero';
 import GestionController from './controllers/gestion';
 import HojavidaController from './controllers/hojavida';
 import InfouserController from './controllers/infouser';
 import ItemEscalaController from './controllers/item_escala';
 import LogReportesController from './controllers/log_reportes';
+import MaxidController from './controllers/maxid';
 import MedidaController from './controllers/medida';
+import NivelEoController from './controllers/nivel_eo';
 import NivelEscalaController from './controllers/nivel_escala';
 import ParametrosDefinicionController from './controllers/parametros_definicion';
 import ParentescoController from './controllers/parentesco';
@@ -55,7 +59,7 @@ import PlanillaPresupuestariaController from './controllers/planilla_presupuesta
 import PlanillasController from './controllers/planillas';
 import PlanillatemporalController from './controllers/planillatemporal';
 import PlantillaEstructuraOrgController from './controllers/plantilla_estructura_org';
-import PlarefrigerioController from './controllers/plarefrigerio';
+import PlantillauoController from './controllers/plantillauo';
 import PlasalarioController from './controllers/plasalario';
 import PoaController from './controllers/poa';
 import PreguntasController from './controllers/preguntas';
@@ -119,16 +123,16 @@ app.use('/api', async (req:HttpRequest, res:HttpResponse, next) => {
 	}
 	return res.unauthorized();
 });
+
+app.use('/api', RbacMiddleWare); // access control middleware.
 app.use('/api/account', AccountController);
 
 app.use('/api/', HomeController);
-app.use('/api/_idpermiso', IdpermisoController)
 app.use('/api/antiguedad', AntiguedadController)
 app.use('/api/archivos', ArchivosController)
 app.use('/api/cas', CasController)
 app.use('/api/categoria', CategoriaController)
 app.use('/api/categoria_escala', CategoriaEscalaController)
-app.use('/api/cod_soa', CodSoaController)
 app.use('/api/comunicados', ComunicadosController)
 app.use('/api/configuracion', ConfiguracionController)
 app.use('/api/cursos', CursosController)
@@ -141,20 +145,25 @@ app.use('/api/detboleta', DetboletaController)
 app.use('/api/detescala', DetescalaController)
 app.use('/api/detitem', DetitemController)
 app.use('/api/entidad', EntidadController)
+app.use('/api/eo_maestra', EoMaestraController)
 app.use('/api/escala', EscalaController)
 app.use('/api/escala_t', EscalaTController)
+app.use('/api/estadocivil', EstadocivilController)
 app.use('/api/estructura_org', EstructuraOrgController)
 app.use('/api/estudios', EstudiosController)
 app.use('/api/evaluacion', EvaluacionController)
 app.use('/api/eventuales', EventualesController)
 app.use('/api/experiencia', ExperienciaController)
 app.use('/api/fuente', FuenteController)
+app.use('/api/genero', GeneroController)
 app.use('/api/gestion', GestionController)
 app.use('/api/hojavida', HojavidaController)
 app.use('/api/infouser', InfouserController)
 app.use('/api/item_escala', ItemEscalaController)
 app.use('/api/log_reportes', LogReportesController)
+app.use('/api/maxid', MaxidController)
 app.use('/api/medida', MedidaController)
+app.use('/api/nivel_eo', NivelEoController)
 app.use('/api/nivel_escala', NivelEscalaController)
 app.use('/api/parametros_definicion', ParametrosDefinicionController)
 app.use('/api/parentesco', ParentescoController)
@@ -166,7 +175,7 @@ app.use('/api/planilla_presupuestaria', PlanillaPresupuestariaController)
 app.use('/api/planillas', PlanillasController)
 app.use('/api/planillatemporal', PlanillatemporalController)
 app.use('/api/plantilla_estructura_org', PlantillaEstructuraOrgController)
-app.use('/api/plarefrigerio', PlarefrigerioController)
+app.use('/api/plantillauo', PlantillauoController)
 app.use('/api/plasalario', PlasalarioController)
 app.use('/api/poa', PoaController)
 app.use('/api/preguntas', PreguntasController)

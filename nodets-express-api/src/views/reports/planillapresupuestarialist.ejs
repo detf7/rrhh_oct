@@ -1,0 +1,34 @@
+
+<div id="report-title"><h1></h1></div>
+<table class="table table-sm table-striped">
+    <thead>
+        <tr>
+            <th>Fuente</th>
+            <th>Nivel</th>
+            <th>Cantidad Items</th>
+            <th>Haber Basico</th>
+            <th>Idplanillapres</th>
+            <th>Descrip Puesto</th>
+            <th>Unidad Organiz</th>
+            <th>Clasificacion</th>
+            <th>Codgestion</th>
+            <th>Categoría</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% records.forEach(function(record){ %>
+        <tr>
+            <td><%= record.fuente %></td>
+            <td><%= record.nivel %></td>
+            <td><%= record.cantidad_items %></td>
+            <td><%= record.haber_basico %></td>
+            <td><%= record.idplanillapres %></td>
+            <td><%= record.descrip_puesto %></td>
+            <td><%= record.unidad_organiz %></td>
+            <td><%= record.clasificacion %></td>
+            <td><%= record.codgestion %></td>
+            <td><%= record.denominacion_cargo %></td>
+        </tr>
+        <% }); %>
+    </tbody>
+</table>

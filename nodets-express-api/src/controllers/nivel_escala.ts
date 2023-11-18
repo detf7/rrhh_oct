@@ -37,6 +37,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 			let searchFields = Nivel_Escala.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
+		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
 		const selectFields = Nivel_Escala.listFields(); //get columns to select
 		query.select(selectFields);
@@ -88,9 +89,7 @@ router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/add/' , 
 	[
-		body('id_nivel_esc').not().isEmpty().isNumeric(),
 		body('valor_nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('id_fk_denom').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('descripcion_niv').optional({nullable: true, checkFalsy: true}),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
@@ -141,10 +140,7 @@ router.get('/edit/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/edit/:recid' , 
 	[
-		body('id_nivel_esc').optional({nullable: true}).not().isEmpty().isNumeric(),
 		body('valor_nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('id_fk_denom').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('descripcion_niv').optional({nullable: true, checkFalsy: true}),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{

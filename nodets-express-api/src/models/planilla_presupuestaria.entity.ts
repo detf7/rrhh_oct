@@ -21,9 +21,9 @@ export default class Planilla_Presupuestaria extends BaseModel {
 	@Column({name: 'haber_basico' })
 	haber_basico: number
 	
-	@Column({name: 'denominacion_cargo' })
-	denominacion_cargo: string
-	
+	@PrimaryColumn({name: 'idplanillapres'})
+	idplanillapres: number
+
 	@Column({name: 'descrip_puesto' })
 	descrip_puesto: string
 	
@@ -36,34 +36,38 @@ export default class Planilla_Presupuestaria extends BaseModel {
 	@Column({name: 'codgestion' })
 	codgestion: string
 	
-	@PrimaryColumn({name: 'idplanillapres'})
-	idplanillapres: number
-
+	@Column({name: 'denominacion_cargo' })
+	denominacion_cargo: string
+	
 	
 	
 	static listFields(): string[]{
 		return [
-			"idplanillapres", 
 			"fuente", 
 			"nivel", 
 			"cantidad_items", 
 			"haber_basico", 
-			"denominacion_cargo", 
+			"idplanillapres", 
+			"descrip_puesto", 
 			"unidad_organiz", 
-			"clasificacion"
+			"clasificacion", 
+			"codgestion", 
+			"denominacion_cargo"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
-			"idplanillapres", 
 			"fuente", 
 			"nivel", 
 			"cantidad_items", 
 			"haber_basico", 
-			"denominacion_cargo", 
+			"idplanillapres", 
+			"descrip_puesto", 
 			"unidad_organiz", 
-			"clasificacion"
+			"clasificacion", 
+			"codgestion", 
+			"denominacion_cargo"
 		];
 	}
 
@@ -73,12 +77,12 @@ export default class Planilla_Presupuestaria extends BaseModel {
 			"nivel", 
 			"cantidad_items", 
 			"haber_basico", 
-			"denominacion_cargo", 
+			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
 			"codgestion", 
-			"idplanillapres"
+			"denominacion_cargo"
 		];
 	}
 
@@ -88,12 +92,12 @@ export default class Planilla_Presupuestaria extends BaseModel {
 			"nivel", 
 			"cantidad_items", 
 			"haber_basico", 
-			"denominacion_cargo", 
+			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
 			"codgestion", 
-			"idplanillapres"
+			"denominacion_cargo"
 		];
 	}
 
@@ -103,24 +107,38 @@ export default class Planilla_Presupuestaria extends BaseModel {
 			"nivel", 
 			"cantidad_items", 
 			"haber_basico", 
+			"idplanillapres", 
+			"descrip_puesto", 
+			"unidad_organiz", 
+			"clasificacion", 
+			"codgestion", 
+			"denominacion_cargo"
+		];
+	}
+
+	static editarFields(): string[]{
+		return [
+			"idplanillapres", 
+			"fuente", 
+			"nivel", 
+			"cantidad_items", 
+			"haber_basico", 
 			"denominacion_cargo", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
-			"idplanillapres"
+			"codgestion"
 		];
 	}
 
 	
 	static searchFields(): string{
 		const fields = [
-			"CAST(fuente AS TEXT) iLIKE :search", 
-			"CAST(nivel AS TEXT) iLIKE :search", 
-			"denominacion_cargo iLIKE :search", 
+			"descrip_puesto iLIKE :search", 
 			"unidad_organiz iLIKE :search", 
 			"clasificacion iLIKE :search", 
-			"descrip_puesto iLIKE :search", 
-			"codgestion iLIKE :search",
+			"codgestion iLIKE :search", 
+			"denominacion_cargo iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

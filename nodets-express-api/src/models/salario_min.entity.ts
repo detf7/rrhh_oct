@@ -16,7 +16,7 @@ export default class Salario_Min extends BaseModel {
 	mes: number
 	
 	@Column({name: 'importe' })
-	importe: string
+	importe: number
 	
 	@Column({name: 'fecha' })
 	fecha: string
@@ -31,23 +31,23 @@ export default class Salario_Min extends BaseModel {
 	
 	static listFields(): string[]{
 		return [
+			"codgestion", 
 			"id_salariomin", 
 			"mes", 
 			"importe", 
 			"fecha", 
-			"respaldo_leg", 
-			"codgestion"
+			"respaldo_leg"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
+			"codgestion", 
 			"id_salariomin", 
 			"mes", 
 			"importe", 
 			"fecha", 
-			"respaldo_leg", 
-			"codgestion"
+			"respaldo_leg"
 		];
 	}
 
@@ -86,8 +86,8 @@ export default class Salario_Min extends BaseModel {
 	
 	static searchFields(): string{
 		const fields = [
-			"respaldo_leg iLIKE :search", 
-			"codgestion iLIKE :search",
+			"codgestion iLIKE :search", 
+			"respaldo_leg iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

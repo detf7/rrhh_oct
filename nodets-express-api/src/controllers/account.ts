@@ -2,6 +2,7 @@
  * Express router providing user account related routes
 */
 import express from 'express';
+import { Rbac } from '../helpers/rbac';
 import utils from '../helpers/utils';
 import DB from '../datasource';
 import { HttpRequest, HttpResponse } from '../helpers/http';
@@ -24,6 +25,11 @@ router.get(['/', '/index'], async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		let recid = req.user.id;
 		let query = Users.getQuery();
+		let allowedRoles = ["user", "admin"];
+		let userRole = req.user.roleName;
+		if(!allowedRoles.includes(userRole)){
+			query.andWhere('id=:userid', { userid: req.user.id });
+		}
 		query.where("id=:recid", { recid });
 		let selectFields = Users.accountviewFields();
 		//page export command
@@ -49,6 +55,11 @@ router.get(['/edit'], async (req:HttpRequest, res:HttpResponse) => {
 		let recid = req.user.id;
 		let query = Users.getQuery();
 		const editFields = Users.accounteditFields(); // get fields to edit
+		let allowedRoles = ["user", "admin"];
+		let userRole = req.user.roleName;
+		if(!allowedRoles.includes(userRole)){
+			query.andWhere('id=:userid', { userid: req.user.id });
+		}
 		query.where("id=:recid", { recid });
 		query.select(editFields);
 		let record = await query.getRawOne();
@@ -72,7 +83,6 @@ router.post(['/edit'] ,
 		body('permisos').optional({nullable: true, checkFalsy: true}),
 		body('user_role_id').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('jsonunidad').optional({nullable: true, checkFalsy: true}),
-		body('id').optional({nullable: true}).not().isEmpty().isNumeric(),
 		body('apmaterno').optional({nullable: true, checkFalsy: true}),
 		body('usuario').optional({nullable: true, checkFalsy: true}),
 		body('foto').optional({nullable: true, checkFalsy: true}),
@@ -94,6 +104,11 @@ router.post(['/edit'] ,
 		
 		let modeldata = matchedData(req, { locations: ['body'], includeOptionals: true }); // get validated data
 		const query = Users.getQuery();
+		let allowedRoles = ["user", "admin"];
+		let userRole = req.user.roleName;
+		if(!allowedRoles.includes(userRole)){
+			query.andWhere('id=:userid', { userid: req.user.id });
+		}
 		query.where("id=:recid", { recid });
 		query.select(editFields);
 		const record = await query.getRawOne();
@@ -111,7 +126,16 @@ router.post(['/edit'] ,
 router.get('/currentuserdata', async function (req:HttpRequest, res:HttpResponse)
 {
 	let user = req.user;
-    return res.send(user);
+	let userRole = user.user_role_id;
+	let rbac = new Rbac(userRole);
+	let userPages = await rbac.getUserPages();
+	let userRoleNames = await rbac.getRoleNames();
+	let data = {
+		user: user,
+		pages: userPages,
+		roles: userRoleNames
+	}
+    return res.send(data);
 });
 
 
