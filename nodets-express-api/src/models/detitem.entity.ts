@@ -127,7 +127,6 @@ export default class Detitem extends BaseModel {
 			"item", 
 			"habilitado", 
 			"codunidad", 
-			"iditem", 
 			"clasificacion", 
 			"codgestion", 
 			"claseglo", 
@@ -136,7 +135,8 @@ export default class Detitem extends BaseModel {
 			"fechaCreacion AS fechacreacion", 
 			"fechaAct AS fechaact", 
 			"jefInmSup AS jefinmsup", 
-			"jefInmJer AS jefinmjer"
+			"jefInmJer AS jefinmjer", 
+			"iditem"
 		];
 	}
 

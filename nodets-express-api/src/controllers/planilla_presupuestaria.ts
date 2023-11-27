@@ -7,6 +7,7 @@ import DB from '../datasource';
 import { HttpRequest, HttpResponse } from '../helpers/http';
 import { body, validationResult, matchedData }  from 'express-validator';
 import { In } from 'typeorm';
+import * as console from "console";
 const Planilla_Presupuestaria = DB.Planilla_Presupuestaria;
 const router = express.Router();
 
@@ -120,13 +121,14 @@ router.post('/agregar/' ,
 	[
 		body('fuente').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('cantidad_items').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('haber_basico').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('numero_item').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('haber_basico').optional({nullable: true, checkFalsy: true}),
 		body('denominacion_cargo').optional({nullable: true, checkFalsy: true}),
 		body('descrip_puesto').optional({nullable: true, checkFalsy: true}),
 		body('unidad_organiz').optional({nullable: true, checkFalsy: true}),
 		body('clasificacion').optional({nullable: true, checkFalsy: true}),
 		body('codgestion').optional({nullable: true, checkFalsy: true}),
+		body('vayx').optional({nullable: true, checkFalsy: true}),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -137,6 +139,18 @@ router.post('/agregar/' ,
 		}
 		let modeldata = matchedData(req, { locations: ['body'] }); // get the validated data
 		
+		// page business logic validation
+		let validationError = validateAgregarPage(modeldata);
+		if(validationError){
+			return res.badRequest(validationError);
+		}
+		await beforeAgregar(modeldata, req);
+
+		let cantidadItem:number = 0;
+		const rsVal = await ValidarAgregar(modeldata, req,res);
+		if (rsVal == 42)
+			return res.badRequest('Valor retornado');
+
 		//save Planilla_Presupuestaria record
 		let record = await Planilla_Presupuestaria.save(modeldata);
 		
@@ -145,7 +159,41 @@ router.post('/agregar/' ,
 		return res.serverError(err);
 	}
 });
+/**
+* Page business logic validation
+* if validation fails return error message else return null
+* @param array modeldata
+* @return string
+*/
+function validateAgregarPage(modeldata){
+    //validation logic here
+	return null;
+}
+/**
+    * Before create new record
+    * @param {object} postdata // validated form data used to create new record
+    */
+async function beforeAgregar(postdata, req:HttpRequest){
+    //enter statement here
+}
 
+ async function ValidarAgregar(postdata, req:HttpRequest, res:HttpResponse): Promise<number | null> {
+	//enter statement here
+	console.log('Dentro la funcion');
+
+
+	 try {
+		 // Lógica de validación aquí
+
+		 // Si la validación es exitosa, devuelve la cantidad deseada
+		 return 42; // Reemplaza esto con el valor que desees
+	 } catch (error) {
+		 // Manejo de errores
+		 console.error(error);
+		 // Si la validación falla, devuelve null o algún otro valor que indique un fallo
+		 return null;
+	 }
+}
 
 /**
  * Route to get  Planilla_Presupuestaria record for edit
@@ -176,10 +224,9 @@ router.get('/editar/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/editar/:recid' , 
 	[
-		body('idplanillapres').optional({nullable: true}).not().isEmpty().isNumeric(),
 		body('fuente').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('cantidad_items').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('numero_item').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('haber_basico').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('denominacion_cargo').optional({nullable: true, checkFalsy: true}),
 		body('descrip_puesto').optional({nullable: true, checkFalsy: true}),

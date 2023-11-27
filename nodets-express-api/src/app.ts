@@ -31,7 +31,6 @@ import DetitemController from './controllers/detitem';
 import EntidadController from './controllers/entidad';
 import EoMaestraController from './controllers/eo_maestra';
 import EscalaController from './controllers/escala';
-import EscalaTController from './controllers/escala_t';
 import EstadocivilController from './controllers/estadocivil';
 import EstructuraOrgController from './controllers/estructura_org';
 import EstudiosController from './controllers/estudios';
@@ -45,7 +44,6 @@ import HojavidaController from './controllers/hojavida';
 import InfouserController from './controllers/infouser';
 import ItemEscalaController from './controllers/item_escala';
 import LogReportesController from './controllers/log_reportes';
-import MaxidController from './controllers/maxid';
 import MedidaController from './controllers/medida';
 import NivelEoController from './controllers/nivel_eo';
 import NivelEscalaController from './controllers/nivel_escala';
@@ -58,13 +56,11 @@ import PexternoController from './controllers/pexterno';
 import PlanillaPresupuestariaController from './controllers/planilla_presupuestaria';
 import PlanillasController from './controllers/planillas';
 import PlanillatemporalController from './controllers/planillatemporal';
+import PlantGeneralUoController from './controllers/plant_general_uo';
 import PlantillaEstructuraOrgController from './controllers/plantilla_estructura_org';
 import PlantillauoController from './controllers/plantillauo';
 import PlasalarioController from './controllers/plasalario';
 import PoaController from './controllers/poa';
-import PreguntasController from './controllers/preguntas';
-import ProveedorController from './controllers/proveedor';
-import RegvacacionController from './controllers/regvacacion';
 import RolesController from './controllers/roles';
 import SalarioMinController from './controllers/salario_min';
 import StockController from './controllers/stock';
@@ -147,7 +143,6 @@ app.use('/api/detitem', DetitemController)
 app.use('/api/entidad', EntidadController)
 app.use('/api/eo_maestra', EoMaestraController)
 app.use('/api/escala', EscalaController)
-app.use('/api/escala_t', EscalaTController)
 app.use('/api/estadocivil', EstadocivilController)
 app.use('/api/estructura_org', EstructuraOrgController)
 app.use('/api/estudios', EstudiosController)
@@ -161,7 +156,6 @@ app.use('/api/hojavida', HojavidaController)
 app.use('/api/infouser', InfouserController)
 app.use('/api/item_escala', ItemEscalaController)
 app.use('/api/log_reportes', LogReportesController)
-app.use('/api/maxid', MaxidController)
 app.use('/api/medida', MedidaController)
 app.use('/api/nivel_eo', NivelEoController)
 app.use('/api/nivel_escala', NivelEscalaController)
@@ -174,13 +168,11 @@ app.use('/api/pexterno', PexternoController)
 app.use('/api/planilla_presupuestaria', PlanillaPresupuestariaController)
 app.use('/api/planillas', PlanillasController)
 app.use('/api/planillatemporal', PlanillatemporalController)
+app.use('/api/plant_general_uo', PlantGeneralUoController)
 app.use('/api/plantilla_estructura_org', PlantillaEstructuraOrgController)
 app.use('/api/plantillauo', PlantillauoController)
 app.use('/api/plasalario', PlasalarioController)
 app.use('/api/poa', PoaController)
-app.use('/api/preguntas', PreguntasController)
-app.use('/api/proveedor', ProveedorController)
-app.use('/api/regvacacion', RegvacacionController)
 app.use('/api/roles', RolesController)
 app.use('/api/salario_min', SalarioMinController)
 app.use('/api/stock', StockController)

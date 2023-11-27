@@ -95,12 +95,12 @@ router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
 router.post('/add/' , 
 	[
 		body('normativa_codigo').not().isEmpty(),
-		body('financiero').optional({nullable: true, checkFalsy: true}),
-		body('nivel').optional({nullable: true, checkFalsy: true}),
+		body('financiero').not().isEmpty(),
+		body('nivel').not().isEmpty(),
 		body('categoria').optional({nullable: true, checkFalsy: true}),
 		body('denominacion').optional({nullable: true, checkFalsy: true}),
 		body('haberbasico').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('numero_items').optional({nullable: true, checkFalsy: true}).isFloat({ max:40,min:0 }),
+		body('numero_items').optional({nullable: true, checkFalsy: true}).isFloat({ max:9999,min:0 }),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -161,9 +161,11 @@ router.get('/edit/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/edit/:recid' , 
 	[
-		body('nivel').optional({nullable: true, checkFalsy: true}),
+		body('financiero').optional({nullable: true}).not().isEmpty(),
+		body('nivel').optional({nullable: true}).not().isEmpty(),
+		body('categoria').optional({nullable: true, checkFalsy: true}),
 		body('denominacion').optional({nullable: true, checkFalsy: true}),
-		body('numero_items').optional({nullable: true, checkFalsy: true}).isFloat({ max:40,min:0 }),
+		body('numero_items').optional({nullable: true, checkFalsy: true}).isFloat({ max:9999,min:0 }),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{
@@ -264,13 +266,11 @@ router.get('/edicion/:recid', async (req:HttpRequest, res:HttpResponse) => {
  */
 router.post('/edicion/:recid' , 
 	[
-		body('habilitado').optional({nullable: true, checkFalsy: true}),
 		body('normativa_codigo').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('normativa_anyo').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('financiero').optional({nullable: true, checkFalsy: true}),
 		body('categoria').optional({nullable: true, checkFalsy: true}),
 		body('nivel').optional({nullable: true, checkFalsy: true}).isNumeric(),
-		body('denominacion').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('denominacion').optional({nullable: true, checkFalsy: true}),
 		body('numero_items').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('haberbasico').optional({nullable: true, checkFalsy: true}).isNumeric(),
 	]

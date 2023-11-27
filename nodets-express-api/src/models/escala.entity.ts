@@ -133,7 +133,9 @@ export default class Escala extends BaseModel {
 
 	static editFields(): string[]{
 		return [
+			"financiero", 
 			"nivel", 
+			"categoria", 
 			"denominacion", 
 			"numero_items", 
 			"idescala"
@@ -142,9 +144,7 @@ export default class Escala extends BaseModel {
 
 	static edicionFields(): string[]{
 		return [
-			"habilitado", 
 			"normativa_codigo", 
-			"normativa_anyo", 
 			"financiero", 
 			"categoria", 
 			"nivel", 

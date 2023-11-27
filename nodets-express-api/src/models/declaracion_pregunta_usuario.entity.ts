@@ -110,7 +110,6 @@ export default class Declaracion_Pregunta_Usuario extends BaseModel {
 
 	static editFields(): string[]{
 		return [
-			"iddeclaracion_pregunta_usuario", 
 			"iddeclaracion", 
 			"fecha_creacion", 
 			"fecha_modificacion", 
@@ -120,7 +119,8 @@ export default class Declaracion_Pregunta_Usuario extends BaseModel {
 			"usuario_eliminacion", 
 			"coddeclaracion", 
 			"codusuario", 
-			"respuesta"
+			"respuesta", 
+			"iddeclaracion_pregunta_usuario"
 		];
 	}
 

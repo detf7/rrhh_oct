@@ -103,7 +103,6 @@ export default class Pexterno extends BaseModel {
 
 	static editFields(): string[]{
 		return [
-			"idpexterno", 
 			"fechaini", 
 			"fechafin", 
 			"vigente", 
@@ -112,7 +111,8 @@ export default class Pexterno extends BaseModel {
 			"tipo", 
 			"cargo", 
 			"dependencia", 
-			"departamento"
+			"departamento", 
+			"idpexterno"
 		];
 	}
 

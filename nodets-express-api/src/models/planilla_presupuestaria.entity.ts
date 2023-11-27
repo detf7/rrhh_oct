@@ -12,12 +12,6 @@ export default class Planilla_Presupuestaria extends BaseModel {
 	@Column({name: 'fuente' })
 	fuente: number
 	
-	@Column({name: 'nivel' })
-	nivel: number
-	
-	@Column({name: 'cantidad_items' })
-	cantidad_items: number
-	
 	@Column({name: 'haber_basico' })
 	haber_basico: number
 	
@@ -39,95 +33,103 @@ export default class Planilla_Presupuestaria extends BaseModel {
 	@Column({name: 'denominacion_cargo' })
 	denominacion_cargo: string
 	
+	@Column({name: 'nivel' })
+	nivel: number
+	
+	@Column({name: 'numero_item' })
+	numero_item: number
+	
+	@Column({name: 'vayx' })
+	vayx: number
+	
 	
 	
 	static listFields(): string[]{
 		return [
 			"fuente", 
-			"nivel", 
-			"cantidad_items", 
 			"haber_basico", 
-			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
-			"codgestion", 
-			"denominacion_cargo"
+			"denominacion_cargo", 
+			"nivel", 
+			"numero_item", 
+			"idplanillapres"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
 			"fuente", 
-			"nivel", 
-			"cantidad_items", 
 			"haber_basico", 
-			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
-			"codgestion", 
-			"denominacion_cargo"
+			"denominacion_cargo", 
+			"nivel", 
+			"numero_item", 
+			"idplanillapres"
 		];
 	}
 
 	static viewFields(): string[]{
 		return [
 			"fuente", 
-			"nivel", 
-			"cantidad_items", 
 			"haber_basico", 
-			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
 			"codgestion", 
-			"denominacion_cargo"
+			"denominacion_cargo", 
+			"nivel", 
+			"numero_item", 
+			"idplanillapres"
 		];
 	}
 
 	static exportViewFields(): string[]{
 		return [
 			"fuente", 
-			"nivel", 
-			"cantidad_items", 
 			"haber_basico", 
-			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
 			"codgestion", 
-			"denominacion_cargo"
+			"denominacion_cargo", 
+			"nivel", 
+			"numero_item", 
+			"idplanillapres"
 		];
 	}
 
 	static editFields(): string[]{
 		return [
 			"fuente", 
-			"nivel", 
-			"cantidad_items", 
 			"haber_basico", 
-			"idplanillapres", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
 			"codgestion", 
-			"denominacion_cargo"
+			"denominacion_cargo", 
+			"nivel", 
+			"numero_item", 
+			"vayx", 
+			"idplanillapres"
 		];
 	}
 
 	static editarFields(): string[]{
 		return [
-			"idplanillapres", 
 			"fuente", 
 			"nivel", 
-			"cantidad_items", 
+			"numero_item", 
 			"haber_basico", 
 			"denominacion_cargo", 
 			"descrip_puesto", 
 			"unidad_organiz", 
 			"clasificacion", 
-			"codgestion"
+			"codgestion", 
+			"idplanillapres"
 		];
 	}
 
@@ -137,8 +139,8 @@ export default class Planilla_Presupuestaria extends BaseModel {
 			"descrip_puesto iLIKE :search", 
 			"unidad_organiz iLIKE :search", 
 			"clasificacion iLIKE :search", 
-			"codgestion iLIKE :search", 
-			"denominacion_cargo iLIKE :search",
+			"denominacion_cargo iLIKE :search", 
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

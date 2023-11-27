@@ -20,7 +20,6 @@ import Detitem from './models/detitem.entity';
 import Entidad from './models/entidad.entity';
 import Eo_Maestra from './models/eo_maestra.entity';
 import Escala from './models/escala.entity';
-import Escala_T from './models/escala_t.entity';
 import Estadocivil from './models/estadocivil.entity';
 import Estructura_Org from './models/estructura_org.entity';
 import Estudios from './models/estudios.entity';
@@ -34,7 +33,6 @@ import Hojavida from './models/hojavida.entity';
 import Infouser from './models/infouser.entity';
 import Item_Escala from './models/item_escala.entity';
 import Log_Reportes from './models/log_reportes.entity';
-import Maxid from './models/maxid.entity';
 import Medida from './models/medida.entity';
 import Nivel_Eo from './models/nivel_eo.entity';
 import Nivel_Escala from './models/nivel_escala.entity';
@@ -47,13 +45,11 @@ import Pexterno from './models/pexterno.entity';
 import Planilla_Presupuestaria from './models/planilla_presupuestaria.entity';
 import Planillas from './models/planillas.entity';
 import Planillatemporal from './models/planillatemporal.entity';
+import Plant_General_Uo from './models/plant_general_uo.entity';
 import Plantilla_Estructura_Org from './models/plantilla_estructura_org.entity';
 import Plantillauo from './models/plantillauo.entity';
 import Plasalario from './models/plasalario.entity';
 import Poa from './models/poa.entity';
-import Preguntas from './models/preguntas.entity';
-import Proveedor from './models/proveedor.entity';
-import Regvacacion from './models/regvacacion.entity';
 import Roles from './models/roles.entity';
 import Salario_Min from './models/salario_min.entity';
 import Stock from './models/stock.entity';
@@ -102,7 +98,6 @@ const DB = {
 	Entidad,
 	Eo_Maestra,
 	Escala,
-	Escala_T,
 	Estadocivil,
 	Estructura_Org,
 	Estudios,
@@ -116,7 +111,6 @@ const DB = {
 	Infouser,
 	Item_Escala,
 	Log_Reportes,
-	Maxid,
 	Medida,
 	Nivel_Eo,
 	Nivel_Escala,
@@ -129,13 +123,11 @@ const DB = {
 	Planilla_Presupuestaria,
 	Planillas,
 	Planillatemporal,
+	Plant_General_Uo,
 	Plantilla_Estructura_Org,
 	Plantillauo,
 	Plasalario,
 	Poa,
-	Preguntas,
-	Proveedor,
-	Regvacacion,
 	Roles,
 	Salario_Min,
 	Stock,

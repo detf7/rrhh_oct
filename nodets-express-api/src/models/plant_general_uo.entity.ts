@@ -3,10 +3,10 @@ import { Entity, PrimaryColumn, Column } from 'typeorm';
 import BaseModel from './basemodel';
 
 //2lines
-@Entity({ name: 'plantillauo', schema: 'public' })
-export default class Plantillauo extends BaseModel {
+@Entity({ name: 'plant_general_uo', schema: 'public' })
+export default class Plant_General_Uo extends BaseModel {
 	static getQuery(){
-		return this.createQueryBuilder("plantillauo");
+		return this.createQueryBuilder("plant_general_uo");
 	}
 	
 	@PrimaryColumn({name: 'idpuo'})
@@ -30,11 +30,11 @@ export default class Plantillauo extends BaseModel {
 	@Column({name: 'codn6' })
 	codn6: number
 	
+	@Column({name: 'sigla' })
+	sigla: string
+	
 	@Column({name: 'prefijosoa' })
 	prefijosoa: string
-	
-	@Column({name: 'codgestion' })
-	codgestion: string
 	
 	@Column({name: 'nombreuo' })
 	nombreuo: string
@@ -48,108 +48,116 @@ export default class Plantillauo extends BaseModel {
 	@Column({name: 'niveluo' })
 	niveluo: string
 	
-	@Column({name: 'sigla' })
-	sigla: string
+	@Column({name: 'codgestion' })
+	codgestion: string
 	
 	
 	
 	static listFields(): string[]{
 		return [
-			"nombreuo", 
+			"idpuo", 
 			"codn1", 
 			"codn2", 
 			"codn3", 
 			"codn4", 
 			"codn5", 
 			"codn6", 
-			"codgestion", 
-			"clasificacionuo", 
 			"sigla", 
-			"idpuo"
+			"prefijosoa", 
+			"nombreuo", 
+			"clasificacionuo", 
+			"dependenciauo", 
+			"niveluo", 
+			"codgestion"
 		];
 	}
 
 	static exportListFields(): string[]{
 		return [
-			"nombreuo", 
+			"idpuo", 
 			"codn1", 
 			"codn2", 
 			"codn3", 
 			"codn4", 
 			"codn5", 
 			"codn6", 
-			"codgestion", 
-			"clasificacionuo", 
 			"sigla", 
-			"idpuo"
+			"prefijosoa", 
+			"nombreuo", 
+			"clasificacionuo", 
+			"dependenciauo", 
+			"niveluo", 
+			"codgestion"
 		];
 	}
 
 	static viewFields(): string[]{
 		return [
+			"idpuo", 
 			"codn1", 
 			"codn2", 
 			"codn3", 
 			"codn4", 
 			"codn5", 
 			"codn6", 
+			"sigla", 
 			"prefijosoa", 
-			"codgestion", 
 			"nombreuo", 
 			"clasificacionuo", 
 			"dependenciauo", 
 			"niveluo", 
-			"sigla", 
-			"idpuo"
+			"codgestion"
 		];
 	}
 
 	static exportViewFields(): string[]{
 		return [
+			"idpuo", 
 			"codn1", 
 			"codn2", 
 			"codn3", 
 			"codn4", 
 			"codn5", 
 			"codn6", 
+			"sigla", 
 			"prefijosoa", 
-			"codgestion", 
 			"nombreuo", 
 			"clasificacionuo", 
 			"dependenciauo", 
 			"niveluo", 
-			"sigla", 
-			"idpuo"
+			"codgestion"
 		];
 	}
 
 	static editFields(): string[]{
 		return [
-			"nombreuo", 
-			"prefijosoa", 
+			"idpuo", 
 			"codn1", 
 			"codn2", 
 			"codn3", 
 			"codn4", 
 			"codn5", 
 			"codn6", 
-			"clasificacionuo", 
 			"sigla", 
-			"codgestion", 
-			"idpuo"
+			"prefijosoa", 
+			"nombreuo", 
+			"clasificacionuo", 
+			"dependenciauo", 
+			"niveluo", 
+			"codgestion"
 		];
 	}
 
 	
 	static searchFields(): string{
 		const fields = [
-			"nombreuo iLIKE :search", 
-			"codgestion iLIKE :search", 
-			"clasificacionuo iLIKE :search", 
 			"sigla iLIKE :search", 
+			"prefijosoa iLIKE :search", 
+			"nombreuo iLIKE :search", 
+			"clasificacionuo iLIKE :search", 
 			"dependenciauo iLIKE :search", 
 			"niveluo iLIKE :search", 
-			"prefijosoa iLIKE :search",
+			"codgestion iLIKE :search",
 		];
 		return '(' + fields.join(' OR ') + ')';
 	}

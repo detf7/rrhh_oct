@@ -75,12 +75,12 @@ export default class Planillas extends BaseModel {
 
 	static editFields(): string[]{
 		return [
-			"idpla", 
 			"fechaini", 
 			"fechafin", 
 			"vigente", 
 			"detalle", 
-			"tipo"
+			"tipo", 
+			"idpla"
 		];
 	}
 

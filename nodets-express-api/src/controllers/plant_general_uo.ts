@@ -3,26 +3,23 @@
 */
 import express from 'express';
 import utils from '../helpers/utils';
-import importUploader from '../helpers/importuploader';
-import { rawQuery } from '../datasource';
 import DB from '../datasource';
-import csv from 'fast-csv';
 import { HttpRequest, HttpResponse } from '../helpers/http';
 import { body, validationResult, matchedData }  from 'express-validator';
 import { In } from 'typeorm';
-const Plantillauo = DB.Plantillauo;
+const Plant_General_Uo = DB.Plant_General_Uo;
 const router = express.Router();
 
 
 
 
 /**
- * Route to list plantillauo records
- * @route {GET} /plantillauo/index/{fieldname}/{fieldvalue}
+ * Route to list plant_general_uo records
+ * @route {GET} /plant_general_uo/index/{fieldname}/{fieldvalue}
  */
 router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res:HttpResponse) => {  
 	try{
-		const query = Plantillauo.getQuery();
+		const query = Plant_General_Uo.getQuery();
 		
 		const fieldName = req.params.fieldname;
 		const fieldValue = req.params.fieldvalue;
@@ -37,12 +34,11 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 		
 		
 		if(search){
-			let searchFields = Plantillauo.searchFields(); // get columns to search
+			let searchFields = Plant_General_Uo.searchFields(); // get columns to search
 			query.andWhere(searchFields, {search: `%${search}%`});
 		}
-		query.andWhere("codgestion in (select idgestion from gestion where habilitado=true)");
 		
-		const selectFields = Plantillauo.listFields(); //get columns to select
+		const selectFields = Plant_General_Uo.listFields(); //get columns to select
 		query.select(selectFields);
 		
 		// order by field
@@ -52,7 +48,7 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 		}
 		
 		//return records and pager info
-		const pageData = await Plantillauo.paginate(query, page, limit);
+		const pageData = await Plant_General_Uo.paginate(query, page, limit);
 		
 		return res.send(pageData);
 	}
@@ -64,53 +60,15 @@ router.get(['/', '/index/:fieldname?/:fieldvalue?'], async (req:HttpRequest, res
 
 
 /**
- * Route to import Plantillauo records
- * support multi import of csv data files
- * csv file must contain table header on the first line.
- * @route {GET} /plantillauo/importdata
- */
-router.post('/importdata', importUploader.array('file'), async (req:HttpRequest, res:HttpResponse) => {
-	const uploadedFiles = req.files as any[];
-	if(uploadedFiles){	// files uploaded
-		var uploadedPaths = uploadedFiles.map((file) =>{
-			return file.path;
-		});
-		if(uploadedPaths.length){
-			uploadedPaths.forEach(function (fpath){
-				let modeldata = [];
-				csv.fromPath(fpath, {headers: true, ignoreEmpty: true}).on("data", function(data){
-					if(data){
-						modeldata.push(data);
-					}
-				}).on("end", async() => {
-					try{
-						const query = Plantillauo.getQuery();
-						const result = await query.insert().values(modeldata).execute();
-						return res.send(`${result.raw.affectedRows} Records Imported`);
-					}
-					catch(err){
-						return res.serverError(err);
-					}
-				});
-			});
-		}
-	}
-	else{
-		return res.badRequest("Error uploading file")
-	}
-});
-
-
-/**
- * Route to view Plantillauo record
- * @route {GET} /plantillauo/view/{recid}
+ * Route to view Plant_General_Uo record
+ * @route {GET} /plant_general_uo/view/{recid}
  */
 router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		let recid = req.params.recid;
-		let query = Plantillauo.getQuery();
+		let query = Plant_General_Uo.getQuery();
 		query.where("idpuo=:recid", { recid });
-		let selectFields = Plantillauo.viewFields();
+		let selectFields = Plant_General_Uo.viewFields();
 		query.select(selectFields);
 		let record = await query.getRawOne();
 		if(!record){
@@ -125,21 +83,25 @@ router.get(['/view/:recid'], async (req:HttpRequest, res:HttpResponse) => {
 
 
 /**
- * Route to insert Plantillauo record
- * @route {POST} /plantillauo/add
+ * Route to insert Plant_General_Uo record
+ * @route {POST} /plant_general_uo/add
  */
 router.post('/add/' , 
 	[
-		body('nombreuo').not().isEmpty(),
-		body('prefijosoa').optional({nullable: true, checkFalsy: true}),
-		body('codn1').optional({nullable: true, checkFalsy: true}),
-		body('codn2').optional({nullable: true, checkFalsy: true}),
-		body('codn3').optional({nullable: true, checkFalsy: true}),
-		body('codn4').optional({nullable: true, checkFalsy: true}),
-		body('codn5').optional({nullable: true, checkFalsy: true}),
-		body('codn6').optional({nullable: true, checkFalsy: true}),
-		body('clasificacionuo').optional({nullable: true, checkFalsy: true}),
+		body('idpuo').not().isEmpty().isNumeric(),
+		body('codn1').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn2').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn3').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn4').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn5').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn6').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('sigla').optional({nullable: true, checkFalsy: true}),
+		body('prefijosoa').optional({nullable: true, checkFalsy: true}),
+		body('nombreuo').optional({nullable: true, checkFalsy: true}),
+		body('clasificacionuo').optional({nullable: true, checkFalsy: true}),
+		body('dependenciauo').optional({nullable: true, checkFalsy: true}),
+		body('niveluo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true, checkFalsy: true}),
 	]
 , async function (req:HttpRequest, res:HttpResponse) {
 	try{
@@ -150,35 +112,25 @@ router.post('/add/' ,
 		}
 		let modeldata = matchedData(req, { locations: ['body'] }); // get the validated data
 		
-		//save Plantillauo record
-		let record = await Plantillauo.save(modeldata);
-		await afterAdd(record, req);
+		//save Plant_General_Uo record
+		let record = await Plant_General_Uo.save(modeldata);
 		
 		return res.send(record);
 	} catch(err){
 		return res.serverError(err);
 	}
 });
-/**
-    * After new record created
-    * @param {object} record // newly created record
-    */
-async function afterAdd(record, req:HttpRequest){
-    //enter statement here
-    let sqltext = `CALL actualiza_gestion_uo()`;
-    let result = await rawQuery(sqltext);
-}
 
 
 /**
- * Route to get  Plantillauo record for edit
- * @route {GET} /plantillauo/edit/{recid}
+ * Route to get  Plant_General_Uo record for edit
+ * @route {GET} /plant_general_uo/edit/{recid}
  */
 router.get('/edit/:recid', async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		let recid = req.params.recid;
-		let query = Plantillauo.getQuery();
-		const editFields = Plantillauo.editFields(); // get fields to edit
+		let query = Plant_General_Uo.getQuery();
+		const editFields = Plant_General_Uo.editFields(); // get fields to edit
 		query.where("idpuo=:recid", { recid });
 		query.select(editFields);
 		let record = await query.getRawOne();
@@ -194,21 +146,25 @@ router.get('/edit/:recid', async (req:HttpRequest, res:HttpResponse) => {
 
 
 /**
- * Route to update  Plantillauo record
- * @route {POST} /plantillauo/edit/{recid}
+ * Route to update  Plant_General_Uo record
+ * @route {POST} /plant_general_uo/edit/{recid}
  */
 router.post('/edit/:recid' , 
 	[
-		body('nombreuo').optional({nullable: true}).not().isEmpty(),
-		body('prefijosoa').optional({nullable: true, checkFalsy: true}),
-		body('codn1').optional({nullable: true, checkFalsy: true}),
-		body('codn2').optional({nullable: true, checkFalsy: true}),
-		body('codn3').optional({nullable: true, checkFalsy: true}),
-		body('codn4').optional({nullable: true, checkFalsy: true}),
-		body('codn5').optional({nullable: true, checkFalsy: true}),
-		body('codn6').optional({nullable: true, checkFalsy: true}),
-		body('clasificacionuo').optional({nullable: true, checkFalsy: true}),
+		body('idpuo').optional({nullable: true}).not().isEmpty().isNumeric(),
+		body('codn1').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn2').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn3').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn4').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn5').optional({nullable: true, checkFalsy: true}).isNumeric(),
+		body('codn6').optional({nullable: true, checkFalsy: true}).isNumeric(),
 		body('sigla').optional({nullable: true, checkFalsy: true}),
+		body('prefijosoa').optional({nullable: true, checkFalsy: true}),
+		body('nombreuo').optional({nullable: true, checkFalsy: true}),
+		body('clasificacionuo').optional({nullable: true, checkFalsy: true}),
+		body('dependenciauo').optional({nullable: true, checkFalsy: true}),
+		body('niveluo').optional({nullable: true, checkFalsy: true}),
+		body('codgestion').optional({nullable: true, checkFalsy: true}),
 	]
 , async (req:HttpRequest, res:HttpResponse) => {
 	try{
@@ -219,10 +175,10 @@ router.post('/edit/:recid' ,
 		}
 		const recid = req.params.recid;
 		
-		const editFields = Plantillauo.editFields();  // get fields to edit
+		const editFields = Plant_General_Uo.editFields();  // get fields to edit
 		
 		let modeldata = matchedData(req, { locations: ['body'], includeOptionals: true }); // get validated data
-		const query = Plantillauo.getQuery();
+		const query = Plant_General_Uo.getQuery();
 		query.where("idpuo=:recid", { recid });
 		query.select(editFields);
 		const record = await query.getRawOne();
@@ -240,14 +196,14 @@ router.post('/edit/:recid' ,
 
 
 /**
- * Route to delete Plantillauo record by table primary key
+ * Route to delete Plant_General_Uo record by table primary key
  * Multi delete supported by recid separated by comma(,)
- * @route {GET} /plantillauo/delete/{recid}
+ * @route {GET} /plant_general_uo/delete/{recid}
  */
 router.get('/delete/:recid', async (req:HttpRequest, res:HttpResponse) => {
 	try{
 		const recid = (req.params.recid || '').split(',');
-		const query = Plantillauo.getQuery();
+		const query = Plant_General_Uo.getQuery();
 		query.where({'idpuo': In(recid)});
 		 
 		const records = await query.getMany();
